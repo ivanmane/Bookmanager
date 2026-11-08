@@ -1,0 +1,1 @@
+C:\Users\LunaI\source\repos\BookManager\BookManager\BookManager.csproj;x64

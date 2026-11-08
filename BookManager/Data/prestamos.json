@@ -1,0 +1,26 @@
+[
+  {
+    "Id": 1,
+    "LibroId": 3,
+    "LectorId": 1,
+    "FechaPrestamo": "2026-11-08T00:00:00-06:00",
+    "FechaVencimiento": "2026-11-13T00:00:00",
+    "FechaDevolucion": "2026-11-08T14:13:00.0738304-06:00"
+  },
+  {
+    "Id": 2,
+    "LibroId": 4,
+    "LectorId": 2,
+    "FechaPrestamo": "2026-11-08T00:00:00-06:00",
+    "FechaVencimiento": "2026-11-15T00:00:00",
+    "FechaDevolucion": null
+  },
+  {
+    "Id": 3,
+    "LibroId": 3,
+    "LectorId": 1,
+    "FechaPrestamo": "2026-11-08T00:00:00-06:00",
+    "FechaVencimiento": "2026-11-08T00:00:00",
+    "FechaDevolucion": null
+  }
+]

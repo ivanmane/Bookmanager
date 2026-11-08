@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 3,
+    "Titulo": "El principito",
+    "Autor": "Antoine de Saint-Exup\u00E9ry",
+    "ISBN": "978-607-07-3053-5",
+    "Genero": "Novela",
+    "AnioPublicacion": 1943,
+    "CantidadEjemplares": 2
+  },
+  {
+    "Id": 4,
+    "Titulo": "Prueba",
+    "Autor": "Prueba",
+    "ISBN": "Prueba",
+    "Genero": "Prueba",
+    "AnioPublicacion": 1,
+    "CantidadEjemplares": 2
+  }
+]

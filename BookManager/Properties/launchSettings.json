@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "BookManager (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "BookManager (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

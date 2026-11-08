@@ -1,0 +1,92 @@
+<Page
+    x:Class="BookManager.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Light"
+    Background="{StaticResource BrushFondoGeneral}">
+
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Padding="16">
+        <Border Width="380"
+                Background="{StaticResource BrushSuperficie}"
+                BorderBrush="{StaticResource BrushBorde}"
+                BorderThickness="1"
+                CornerRadius="10"
+                Padding="36,40">
+            <StackPanel Spacing="20">
+                <!-- Logotipo de BookManager -->
+                <Image Source="ms-appx:///Assets/BookManager.png"
+                       Width="84"
+                       Height="84"
+                       HorizontalAlignment="Center" />
+
+                <!-- Título y subtítulo -->
+                <StackPanel Spacing="4" HorizontalAlignment="Center">
+                    <TextBlock Text="BookManager"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource BrushAzulMarino}"
+                               HorizontalAlignment="Center" />
+                    <TextBlock Text="Gestión de Biblioteca"
+                               FontSize="14"
+                               Foreground="{StaticResource BrushTextoSecundario}"
+                               HorizontalAlignment="Center" />
+                </StackPanel>
+
+                <!-- Campo de usuario -->
+                <StackPanel Spacing="6">
+                    <TextBlock Text="Usuario"
+                               FontWeight="SemiBold"
+                               FontSize="13"
+                               Foreground="{StaticResource BrushTextoPrincipal}" />
+                    <TextBox x:Name="TxtUsuario"
+                             PlaceholderText="Ingrese su usuario"
+                             Background="{StaticResource BrushSuperficie}"
+                             Foreground="{StaticResource BrushTextoPrincipal}"
+                             PlaceholderForeground="{StaticResource BrushTextoSecundario}"
+                             BorderBrush="{StaticResource BrushBorde}"
+                             BorderThickness="1"
+                             CornerRadius="6"
+                             PreviewKeyDown="BloquearEspacioInicial_PreviewKeyDown"
+                             TextChanged="BloquearEspacioInicial_TextChanged" />
+                </StackPanel>
+
+                <!-- Campo de contraseña con caracteres ocultos -->
+                <StackPanel Spacing="6">
+                    <TextBlock Text="Contraseña"
+                               FontWeight="SemiBold"
+                               FontSize="13"
+                               Foreground="{StaticResource BrushTextoPrincipal}" />
+                    <PasswordBox x:Name="TxtPassword"
+                                 PlaceholderText="Ingrese su contraseña"
+                                 Background="{StaticResource BrushSuperficie}"
+                                 Foreground="{StaticResource BrushTextoPrincipal}"
+                                 BorderBrush="{StaticResource BrushBorde}"
+                                 BorderThickness="1"
+                                 CornerRadius="6"
+                                 PreviewKeyDown="Password_PreviewKeyDown"
+                                 PasswordChanged="Password_PasswordChanged" />
+                </StackPanel>
+
+                <!-- Botón para iniciar sesión -->
+                <Button x:Name="BtnIngresar"
+                        Content="Ingresar al sistema"
+                        Style="{StaticResource BotonPrimarioStyle}"
+                        HorizontalAlignment="Stretch"
+                        Height="40"
+                        Margin="0,8,0,0"
+                        Click="BtnIngresar_Click" />
+
+                <!-- Mensaje de estado para indicar error o acceso exitoso -->
+                <TextBlock x:Name="TxtMensaje"
+                           TextWrapping="Wrap"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           FontSize="13"
+                           FontWeight="Medium" />
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

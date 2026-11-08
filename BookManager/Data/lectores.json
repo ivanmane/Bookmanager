@@ -1,0 +1,16 @@
+[
+  {
+    "Id": 1,
+    "Nombre": "Ivan Antonio Luna Lopez",
+    "Matricula": "2014452",
+    "Correo": "ivan.luna@gmail.com",
+    "Telefono": "8145899327"
+  },
+  {
+    "Id": 2,
+    "Nombre": "Braian de Jes\u00FAs Rios Vega",
+    "Matricula": "0000000",
+    "Correo": "braianrios68@gmail.com",
+    "Telefono": "8421041091"
+  }
+]

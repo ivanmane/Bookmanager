@@ -1,0 +1,263 @@
+﻿<Page
+    x:Class="BookManager.Views.PrestamosPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    RequestedTheme="Light"
+    Background="{StaticResource BrushFondoGeneral}">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Padding="32" RowSpacing="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!-- 1. Encabezado y botón volver -->
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Spacing="4">
+                    <TextBlock Text="Gestión de préstamos y devoluciones"
+                               FontSize="26"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource BrushAzulMarino}" />
+                    <TextBlock x:ConnectionId='14' x:Name="TxtTotalResultados"
+                               Text="Cargando información..."
+                               FontSize="13"
+                               Foreground="{StaticResource BrushTextoSecundario}" />
+                </StackPanel>
+
+                <Button x:ConnectionId='13' Grid.Column="1"
+                        x:Name="BtnVolver"
+                        Content="← Volver al Dashboard"
+                        Style="{StaticResource BotonSecundarioStyle}"
+                        VerticalAlignment="Top"
+                                                />
+            </Grid>
+
+            <!-- 2. Mensaje global de estado (éxito o error) -->
+            <TextBlock x:ConnectionId='2' Grid.Row="1"
+                       x:Name="TxtMensajeEstado"
+                       TextWrapping="Wrap"
+                       FontWeight="SemiBold"
+                       FontSize="13"
+                       Visibility="Collapsed" />
+
+            <!-- 3. Formulario: Registrar nuevo préstamo (Compacto) -->
+            <Border Grid.Row="2"
+                    BorderThickness="1"
+                    BorderBrush="{StaticResource BrushBorde}"
+                    CornerRadius="8"
+                    Padding="24"
+                    Background="{StaticResource BrushSuperficie}">
+                <StackPanel Spacing="16">
+                    <TextBlock Text="Registrar nuevo préstamo"
+                               FontSize="17"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource BrushAzulMarino}" />
+
+                    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="16" RowSpacing="12">
+                        <!-- Lector -->
+                        <StackPanel Grid.Row="0" Grid.Column="0" Spacing="4">
+                            <TextBlock Text="Lector (* obligatorio):" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource BrushTextoPrincipal}" />
+                            <ComboBox x:ConnectionId='12' x:Name="CmbLectores"
+                                      HorizontalAlignment="Stretch"
+                                      PlaceholderText="Seleccione un lector..."
+                                      Background="{StaticResource BrushSuperficie}"
+                                      Foreground="{StaticResource BrushTextoPrincipal}"
+                                      BorderBrush="{StaticResource BrushBorde}"
+                                      BorderThickness="1"
+                                      CornerRadius="6"
+                                      DisplayMemberPath="TextoPresentacion" />
+                        </StackPanel>
+
+                        <!-- Libro disponible -->
+                        <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
+                            <TextBlock Text="Libro disponible (* obligatorio):" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource BrushTextoPrincipal}" />
+                            <ComboBox x:ConnectionId='11' x:Name="CmbLibros"
+                                      HorizontalAlignment="Stretch"
+                                      PlaceholderText="Seleccione un libro disponible..."
+                                      Background="{StaticResource BrushSuperficie}"
+                                      Foreground="{StaticResource BrushTextoPrincipal}"
+                                      BorderBrush="{StaticResource BrushBorde}"
+                                      BorderThickness="1"
+                                      CornerRadius="6"
+                                      DisplayMemberPath="TextoPresentacion" />
+                        </StackPanel>
+
+                        <!-- Fecha de préstamo (asignada automáticamente) -->
+                        <StackPanel Grid.Row="1" Grid.Column="0" Spacing="4">
+                            <TextBlock Text="Fecha de préstamo (asignada automáticamente):" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource BrushTextoPrincipal}" />
+                            <TextBox x:ConnectionId='10' x:Name="TxtFechaPrestamo"
+                                     IsReadOnly="True"
+                                     IsEnabled="False"
+                                     Background="#F8FAFC"
+                                     Foreground="{StaticResource BrushTextoPrincipal}"
+                                     BorderBrush="{StaticResource BrushBorde}"
+                                     BorderThickness="1"
+                                     CornerRadius="6"
+                                                                                           
+                                                                                      />
+                        </StackPanel>
+
+                        <!-- Fecha de vencimiento (DatePicker) -->
+                        <StackPanel Grid.Row="1" Grid.Column="1" Spacing="4">
+                            <TextBlock Text="Fecha de vencimiento (* obligatoria):" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource BrushTextoPrincipal}" />
+                            <DatePicker x:ConnectionId='9' x:Name="DpkFechaVencimiento"
+                                        HorizontalAlignment="Stretch"
+                                        Background="{StaticResource BrushSuperficie}"
+                                        Foreground="{StaticResource BrushTextoPrincipal}"
+                                        BorderBrush="{StaticResource BrushBorde}"
+                                        BorderThickness="1"
+                                        CornerRadius="6" />
+                        </StackPanel>
+                    </Grid>
+
+                    <!-- Mensaje de error de validación del formulario -->
+                    <TextBlock x:ConnectionId='7' x:Name="TxtErrorFormulario"
+                               Foreground="{StaticResource BrushError}"
+                               FontWeight="SemiBold"
+                               FontSize="13"
+                               Visibility="Collapsed"
+                               TextWrapping="Wrap" />
+
+                    <!-- Botón para registrar préstamo -->
+                    <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
+                        <Button x:ConnectionId='8' x:Name="BtnRegistrarPrestamo"
+                                Content="Registrar préstamo"
+                                Style="{StaticResource BotonAcentoStyle}"
+                                                                   />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+
+            <!-- 4. Barra de filtros y botón de devolución -->
+            <Grid Grid.Row="3" ColumnSpacing="12">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                    <TextBlock Text="Historial de préstamos"
+                               FontSize="18"
+                               FontWeight="Bold"
+                               Foreground="{StaticResource BrushTextoPrincipal}" />
+                </StackPanel>
+
+                <!-- Selector de filtro de estado -->
+                <ComboBox x:ConnectionId='5' Grid.Column="1"
+                          x:Name="CmbFiltro"
+                          HorizontalAlignment="Stretch"
+                          Background="{StaticResource BrushSuperficie}"
+                          Foreground="{StaticResource BrushTextoPrincipal}"
+                          BorderBrush="{StaticResource BrushBorde}"
+                          BorderThickness="1"
+                          CornerRadius="6"
+                                                                       >
+                    <ComboBoxItem Content="Todos" Foreground="{StaticResource BrushTextoPrincipal}" />
+                    <ComboBoxItem Content="Activos" Foreground="{StaticResource BrushTextoPrincipal}" />
+                    <ComboBoxItem Content="Vencidos" Foreground="{StaticResource BrushTextoPrincipal}" />
+                    <ComboBoxItem Content="Devueltos" Foreground="{StaticResource BrushTextoPrincipal}" />
+                </ComboBox>
+
+                <!-- Botón para registrar devolución -->
+                <Button x:ConnectionId='6' Grid.Column="2"
+                        x:Name="BtnDevolver"
+                        Content="Registrar devolución"
+                        Style="{StaticResource BotonPrimarioStyle}"
+                        IsEnabled="False"
+                                                  />
+            </Grid>
+
+            <!-- 5. Tabla de préstamos -->
+            <StackPanel Grid.Row="4" Spacing="0">
+                <!-- Encabezado de columnas -->
+                <Border Background="#F8FAFC"
+                        BorderBrush="{StaticResource BrushBorde}"
+                        BorderThickness="1,1,1,0"
+                        CornerRadius="6,6,0,0"
+                        Padding="16,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50" />
+                            <ColumnDefinition Width="2.2*" />
+                            <ColumnDefinition Width="1.8*" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="105" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="110" />
+                            <ColumnDefinition Width="100" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="ID" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource BrushTextoSecundario}" />
+                        <TextBlock Grid.Column="1" Text="Título del libro" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource BrushTextoSecundario}" />
+                        <TextBlock Grid.Column="2" Text="Lector" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource BrushTextoSecundario}" />
+                        <TextBlock Grid.Column="3" Text="Matrícula" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource BrushTextoSecundario}" />
+                        <TextBlock Grid.Column="4" Text="F. Préstamo" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource BrushTextoSecundario}" />
+                        <TextBlock Grid.Column="5" Text="F. Vencimiento" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource BrushTextoSecundario}" />
+                        <TextBlock Grid.Column="6" Text="F. Devolución" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource BrushTextoSecundario}" />
+                        <TextBlock Grid.Column="7" Text="Estado" FontWeight="SemiBold" FontSize="12" Foreground="{StaticResource BrushTextoSecundario}" />
+                    </Grid>
+                </Border>
+
+                <!-- Filas de datos -->
+                <ListView x:ConnectionId='3' x:Name="ListaPrestamos"
+                          SelectionMode="Single"
+                                                                            
+                          Background="{StaticResource BrushSuperficie}"
+                          BorderBrush="{StaticResource BrushBorde}"
+                          BorderThickness="1"
+                          CornerRadius="0,0,6,6"
+                          MinHeight="180"
+                          MaxHeight="460">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="4,8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50" />
+                                    <ColumnDefinition Width="2.2*" />
+                                    <ColumnDefinition Width="1.8*" />
+                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="105" />
+                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="110" />
+                                    <ColumnDefinition Width="100" />
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Grid.Column="0" Text="{Binding Id}" VerticalAlignment="Center" Foreground="{StaticResource BrushTextoSecundario}" FontSize="12" />
+                                <TextBlock Grid.Column="1" Text="{Binding TituloLibro}" FontWeight="SemiBold" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Foreground="{StaticResource BrushTextoPrincipal}" />
+                                <TextBlock Grid.Column="2" Text="{Binding NombreLector}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" Foreground="{StaticResource BrushTextoPrincipal}" />
+                                <TextBlock Grid.Column="3" Text="{Binding MatriculaLector}" VerticalAlignment="Center" Foreground="{StaticResource BrushTextoSecundario}" />
+                                <TextBlock Grid.Column="4" Text="{Binding FechaPrestamoTexto}" VerticalAlignment="Center" Foreground="{StaticResource BrushTextoSecundario}" />
+                                <TextBlock Grid.Column="5" Text="{Binding FechaVencimientoTexto}" VerticalAlignment="Center" Foreground="{StaticResource BrushTextoPrincipal}" />
+                                <TextBlock Grid.Column="6" Text="{Binding FechaDevolucionTexto}" VerticalAlignment="Center" Foreground="{StaticResource BrushTextoSecundario}" />
+                                <Border Grid.Column="7"
+                                        CornerRadius="4"
+                                        Padding="8,3"
+                                        HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Background="{Binding ColorFondoEstado}">
+                                    <TextBlock Text="{Binding Estado}"
+                                               Foreground="{Binding ColorTextoEstado}"
+                                               FontWeight="SemiBold"
+                                               FontSize="11" />
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
+
