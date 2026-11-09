@@ -54,46 +54,52 @@ namespace BookManager.Views
             await CargarDatosDashboardAsync();
         }
 
-        // Se ejecuta cada vez que se navega de regreso a esta página
+        // Vuelve a cargar los datos nuevos cuando volvemos a la pagina para evitar que no se reflejen los cambios
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             await CargarDatosDashboardAsync();
         }
 
-        // Método asíncrono para leer los tres JSON, calcular indicadores y préstamos pendientes
+        // En esta parte se carga de forma asincrona los datos (asincrono es que no se detiene el flujo) y se cargan todos los indicadores de la pantalla
         private async Task CargarDatosDashboardAsync()
         {
             try
             {
-                // Indicador visual de carga
+                // Este indicador es para mostrar que se estan cargando los datos
                 PrgCarga.IsActive = true;
                 PrgCarga.Visibility = Visibility.Visible;
                 TxtMensajeEstado.Text = "Cargando información...";
                 TxtMensajeEstado.Foreground = new SolidColorBrush(Colors.Gray);
                 TxtMensajeEstado.Visibility = Visibility.Visible;
 
-                // Lectura de los tres archivos JSON mediante JsonService
+                // Lectura de los JSON. Usamos await para parar la lectura asincrona hasta que termine de leer los archivos 1 por 1.
                 List<Libro> libros = await _jsonService.LeerListaAsync<Libro>("libros.json");
                 List<Lector> lectores = await _jsonService.LeerListaAsync<Lector>("lectores.json");
                 List<Prestamo> prestamos = await _jsonService.LeerListaAsync<Prestamo>("prestamos.json");
 
-                // 1. Validar que ningún libro contenga explícitamente CantidadEjemplares <= 0
+                // Validacion de que no tenemos libros en cantidades negativas
                 var libroInvalido = libros.FirstOrDefault(l => l.CantidadEjemplares <= 0);
                 if (libroInvalido != null)
                 {
                     throw new InvalidOperationException($"El libro \"{libroInvalido.Titulo}\" (ID: {libroInvalido.Id}) tiene una cantidad de ejemplares inválida ({libroInvalido.CantidadEjemplares}). Debe ser mayor que cero.");
                 }
 
-                // 2. Total de ejemplares físicos registrados
+                // Aqui creamos la variable totalEjemplares suma todos los libros
                 int totalEjemplares = libros.Sum(l => l.CantidadEjemplares);
 
-                // Mapeos rápidos para relacionar información
+                // Aqui hace una suma por ID.
+                // ToDictionary sirve para leer los JSON
+                // l representa cada elemento individual 
+                // aqui utilizamos ToHashSet porque es mas rapido, es como una lista pero al leerla en vez de ir valor por valor, va directo a la memoria donde se encuentra en la tabla hash
                 var librosPorId = libros.ToDictionary(l => l.Id);
                 var lectoresPorId = lectores.ToDictionary(l => l.Id);
                 var idsLibrosRegistrados = librosPorId.Keys.ToHashSet();
 
-                // 3. Contar préstamos activos y vencidos asociados a libros existentes
+                // Aqui contamos los prestamos vencidos y pendientes de devolucion.
+                // for each es para aplicar a cada elemento de una lista
+                // Aqui se basa es que no tengan fecha de devolucion porque en vez de tener una columna con estatus, decidimos calcular los prestamos cuando devolucion es nula
+                // Si la fecha de vencimiento es menor que hoy lo tomamos como vencido. Lo consideramos por dia no por horas.
                 int totalPrestados = 0;
                 int totalVencidos = 0;
                 DateTime hoy = DateTime.Today;
@@ -114,7 +120,7 @@ namespace BookManager.Views
                     }
                 }
 
-                // 4. Detección de inconsistencias: si los préstamos activos superan las existencias
+                // Candado para validar que no hayan mas prestamos activos que los libros disponibles
                 bool hayInconsistencia = false;
                 string detalleInconsistencia = string.Empty;
 
@@ -139,16 +145,15 @@ namespace BookManager.Views
 
                 int totalDisponibles = totalEjemplares - totalPrestados;
 
-                // 5. Asignar los 4 indicadores numéricos
+                // Calcular indicadores
                 TxtTotalLibros.Text = totalEjemplares.ToString();
                 TxtLibrosDisponibles.Text = hayInconsistencia ? "!" : totalDisponibles.ToString();
                 TxtLibrosPrestados.Text = totalPrestados.ToString();
                 TxtLibrosVencidos.Text = totalVencidos.ToString();
 
-                // 6. Construir lista de Préstamos pendientes de devolución (FechaDevolucion == null)
+                // Lista de prestamos pendientes
                 ConstruirListaPrestamosPendientes(prestamos, librosPorId, lectoresPorId, hoy);
 
-                // Ocultar carga
                 PrgCarga.IsActive = false;
                 PrgCarga.Visibility = Visibility.Collapsed;
 
@@ -182,7 +187,7 @@ namespace BookManager.Views
             }
         }
 
-        // Construye y ordena la lista de préstamos pendientes según la prioridad requerida
+        // Aqui creamos la lista y se les asigna el orden el que se van a filtrar
         private void ConstruirListaPrestamosPendientes(
             List<Prestamo> prestamos,
             Dictionary<int, Libro> librosPorId,
@@ -191,17 +196,16 @@ namespace BookManager.Views
         {
             var pendientesTemp = new List<PrestamoPendienteVista>();
 
-            // Filtrar únicamente préstamos activos (no devueltos)
+            // Filtrar únicamente préstamos activos
             var prestamosActivos = prestamos.Where(p => p.FechaDevolucion == null).ToList();
 
             foreach (var prestamo in prestamosActivos)
             {
-                // Obtener datos del libro relacionado o indicar dato faltante
                 string tituloLibro = librosPorId.TryGetValue(prestamo.LibroId, out var libro)
                     ? libro.Titulo
                     : $"(Libro ID {prestamo.LibroId} no encontrado)";
 
-                // Obtener datos del lector relacionado o indicar dato faltante
+                // Datos de el lector asignado
                 string nombreLector, matriculaLector, correoLector, telefonoLector;
                 if (lectoresPorId.TryGetValue(prestamo.LectorId, out var lector))
                 {
@@ -218,7 +222,7 @@ namespace BookManager.Views
                     telefonoLector = "-";
                 }
 
-                // Cálculo de estado y días de retraso
+                // Calculos para determinar si hay un retraso o el estado del prestamo
                 DateTime fechaVenc = prestamo.FechaVencimiento.Date;
                 int diasDiferencia = (fechaVenc - hoy).Days;
 
@@ -230,7 +234,6 @@ namespace BookManager.Views
 
                 if (diasDiferencia < 0)
                 {
-                    // 1. Vencido: rojo discreto (#B91C1C) con fondo suave (#FEE2E2)
                     prioridad = 1;
                     diasRetraso = Math.Abs(diasDiferencia);
                     estadoTexto = diasRetraso == 1 ? "Vencido · 1 día" : $"Vencido · {diasRetraso} días";
@@ -239,7 +242,6 @@ namespace BookManager.Views
                 }
                 else if (diasDiferencia == 0)
                 {
-                    // 2. Vence hoy: amarillo/ámbar (#B45309) con fondo suave (#FEF3C7)
                     prioridad = 2;
                     estadoTexto = "Vence hoy";
                     fondo = new SolidColorBrush(Color.FromArgb(255, 254, 243, 199));
@@ -247,7 +249,6 @@ namespace BookManager.Views
                 }
                 else
                 {
-                    // 3. Futuro: azul suave (#245A96) con fondo suave (#EEF2FF)
                     prioridad = 3;
                     estadoTexto = diasDiferencia == 1 ? "Vence en 1 día" : $"Vence en {diasDiferencia} días";
                     fondo = new SolidColorBrush(Color.FromArgb(255, 238, 242, 255));
@@ -273,17 +274,17 @@ namespace BookManager.Views
                 });
             }
 
-            // Aplicar orden de prioridad estricto:
-            // 1. Vencidos primero, comenzando por los que tienen mayor retraso
+            // Orden de prioridad con el que se mostraran los elementos de la lista
+            // Primero se mostraran aquellos libros que estan vencidos
             var listaVencidos = pendientesTemp
                 .Where(x => x.Prioridad == 1)
                 .OrderByDescending(x => x.DiasRetraso);
 
-            // 2. Préstamos que vencen hoy
+            // Estos son los prestamos que vencen hoy
             var listaHoy = pendientesTemp
                 .Where(x => x.Prioridad == 2);
 
-            // 3. Préstamos futuros ordenados por fecha más cercana
+            // Prestamos que aun no vencen ordenamos por >
             var listaFuturos = pendientesTemp
                 .Where(x => x.Prioridad == 3)
                 .OrderBy(x => x.FechaVencimiento);
@@ -304,9 +305,7 @@ namespace BookManager.Views
             }
         }
 
-        // ========================================================
-        // NAVEGACIÓN HACIA EL CATÁLOGO Y LECTORES
-        // ========================================================
+        // Logica de los botones para navegar con los filtros activos.
 
         private void IndicadorTotal_Click(object sender, RoutedEventArgs e)
         {
