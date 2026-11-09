@@ -14,7 +14,7 @@ using BookManager.Services;
 
 namespace BookManager.Views
 {
-    // Clase auxiliar para la presentación de libros con existencias físicas en la tabla
+    // Aqui creamos una lista para darle formato a la lista que se mostrara.
     public class LibroItemVista
     {
         public int Id { get; set; }
@@ -36,13 +36,12 @@ namespace BookManager.Views
         private List<Prestamo> _prestamos = new();
         private List<LibroItemVista> _librosVista = new();
 
-        // Controla si estamos editando un libro existente o creando uno nuevo
         private int? _libroEnEdicionId = null;
 
-        // Filtro recibido desde el Dashboard mediante navegación
+        // Aqui cargamos el filtro que se selecciono en dashboard. Por defeto lo seleccionamos como todos
         private string _filtroInicial = "Todos";
 
-        // Bandera para evitar disparos prematuros antes de que los controles XAML se inicialicen
+        // Candando para que no cargue el front
         private bool _estaCargado = false;
 
         public CatalogoPage()
@@ -52,7 +51,7 @@ namespace BookManager.Views
             this.Loaded += CatalogoPage_Loaded;
         }
 
-        // Recibe el parámetro de navegación (ej: "Todos", "Disponibles", "Prestados", "Vencidos")
+        // Cargamos el filtro que se selecciono o por defecto todos
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -62,7 +61,6 @@ namespace BookManager.Views
             }
         }
 
-        // Se ejecuta al cargar la página en pantalla
         private async void CatalogoPage_Loaded(object sender, RoutedEventArgs e)
         {
             _estaCargado = true;
@@ -90,7 +88,6 @@ namespace BookManager.Views
             }
         }
 
-        // Carga asíncrona de los archivos JSON
         private async Task CargarDatosAsync()
         {
             try
@@ -99,7 +96,7 @@ namespace BookManager.Views
                 _libros = await _jsonService.LeerListaAsync<Libro>("libros.json");
                 _prestamos = await _jsonService.LeerListaAsync<Prestamo>("prestamos.json");
 
-                // Validar que ningún libro contenga explícitamente CantidadEjemplares <= 0 en el JSON
+                // Seguridad que no hayan ejemplares negativos 
                 var libroInvalido = _libros.FirstOrDefault(l => l.CantidadEjemplares <= 0);
                 if (libroInvalido != null)
                 {
@@ -117,7 +114,7 @@ namespace BookManager.Views
             }
         }
 
-        // Convierte los modelos Libro a elementos con existencias físicas calculadas
+        // Aqui se contruye toda la vista de la lista con los libros
         private void ConstruirListaVista()
         {
             DateTime hoy = DateTime.Today;
@@ -126,7 +123,6 @@ namespace BookManager.Views
             {
                 int total = libro.CantidadEjemplares;
 
-                // Préstamos activos asociados a este libro
                 var prestamosActivos = _prestamos
                     .Where(p => p.LibroId == libro.Id && p.FechaDevolucion == null)
                     .ToList();
@@ -151,7 +147,6 @@ namespace BookManager.Views
             }).ToList();
         }
 
-        // Genera una copia profunda independiente de los libros para operaciones CRUD atómicas
         private List<Libro> ClonarLibros(List<Libro> origen)
         {
             return origen.Select(l => new Libro
@@ -166,7 +161,7 @@ namespace BookManager.Views
             }).ToList();
         }
 
-        // Aplica el filtro de disponibilidad y la búsqueda por texto simultáneamente
+        // Busquedas por filtro
         private void AplicarBusquedaYFiltros()
         {
             if (!_estaCargado || ListaLibros == null)
@@ -179,24 +174,19 @@ namespace BookManager.Views
 
             IEnumerable<LibroItemVista> consulta = _librosVista;
 
-            // Filtro por disponibilidad basado en existencias físicas
             if (filtro == "Disponibles")
             {
-                // Títulos que tienen al menos un ejemplar disponible
                 consulta = consulta.Where(l => l.EjemplaresDisponibles > 0);
             }
             else if (filtro == "Prestados")
             {
-                // Títulos con al menos un préstamo activo (incluye los que tengan ejemplares vencidos)
                 consulta = consulta.Where(l => l.EjemplaresPrestados > 0);
             }
             else if (filtro == "Vencidos")
             {
-                // Títulos con al menos un préstamo activo vencido
                 consulta = consulta.Where(l => l.EjemplaresVencidos > 0);
             }
 
-            // Búsqueda por Título, Autor o ISBN (insensible a mayúsculas y espacios)
             if (!string.IsNullOrWhiteSpace(busqueda))
             {
                 consulta = consulta.Where(l =>
@@ -208,14 +198,12 @@ namespace BookManager.Views
             var resultados = consulta.ToList();
             ListaLibros.ItemsSource = resultados;
 
-            // Actualizar el indicador de conteo
             if (TxtTotalResultados != null)
             {
                 int totalCopias = _librosVista.Sum(l => l.TotalEjemplares);
                 TxtTotalResultados.Text = $"Mostrando {resultados.Count} de {_librosVista.Count} título(s) ({totalCopias} ejemplar(es) físico(s) en total).";
             }
 
-            // Limpiar selección de la tabla y deshabilitar botones que dependen de selección
             ListaLibros.SelectedItem = null;
             ActualizarBotonesSeleccion();
         }
@@ -224,7 +212,6 @@ namespace BookManager.Views
         {
             if (!_estaCargado) return;
 
-            // Eliminar espacios iniciales si fueron introducidos o pegados
             if (sender is TextBox tb && tb.Text.StartsWith(' '))
             {
                 int cursor = tb.SelectionStart;
@@ -239,11 +226,8 @@ namespace BookManager.Views
             AplicarBusquedaYFiltros();
         }
 
-        // ========================================================
-        // VALIDACIONES DE ENTRADA Y RESTRICCIONES VISUALES
-        // ========================================================
 
-        // Evita que el usuario comience con espacios desde el teclado
+        // Filtro para evitar que se puedan poner espacios cuando el box esta vacia
         private void BloquearEspacioInicial_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Space)
@@ -255,7 +239,7 @@ namespace BookManager.Views
             }
         }
 
-        // Elimina espacios iniciales al pegar texto, conservando los espacios internos legítimos
+        // Elimina los espacios iniciales en dado caso pero se pueden conservar los espacios dentro de la cadena de texto
         private void BloquearEspacioInicial_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender is TextBox tb && tb.Text.StartsWith(' '))
@@ -269,7 +253,7 @@ namespace BookManager.Views
             }
         }
 
-        // Restringe el teclado en Año de publicación a números 0-9 y bloquea espacios, letras y negativos
+        // Se restringe que puedan escribir cualquier cosa que no sean numeros
         private void TxtAnio_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Back ||
@@ -298,7 +282,6 @@ namespace BookManager.Views
             }
         }
 
-        // Controla que el año no contenga símbolos, negativos ni letras al pegar, y limita a 4 caracteres ASCII
         private void TxtAnio_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender is not TextBox tb) return;
@@ -318,7 +301,6 @@ namespace BookManager.Views
             }
         }
 
-        // Restringe el campo Cantidad de ejemplares a números enteros positivos
         private void TxtEjemplares_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Back ||
@@ -383,10 +365,7 @@ namespace BookManager.Views
             BtnEditar.IsEnabled = haySeleccion;
             BtnEliminar.IsEnabled = haySeleccion;
         }
-
-        // ==========================================
-        // AGREGAR Y EDITAR LIBROS
-        // ==========================================
+        // Seccion para agregar libros y tambien para editarlos
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
@@ -446,35 +425,33 @@ namespace BookManager.Views
             string anioTexto = TxtAnio.Text.Trim();
             string ejemplaresTexto = TxtEjemplares.Text.Trim();
 
-            // 1. Validar título obligatorio
+            // Validaciones para que los campos no esten vacios
             if (string.IsNullOrWhiteSpace(titulo))
             {
                 MostrarErrorFormulario("El título es obligatorio.");
                 return;
             }
 
-            // 2. Validar autor obligatorio
             if (string.IsNullOrWhiteSpace(autor))
             {
                 MostrarErrorFormulario("El autor es obligatorio.");
                 return;
             }
 
-            // 3. Validar año obligatorio, numérico, mayor que 0 y menor o igual al año actual
             if (!int.TryParse(anioTexto, out int anio) || anio <= 0 || anio > DateTime.Now.Year)
             {
                 MostrarErrorFormulario($"El año de publicación debe ser un número mayor a 0 y no superior al año actual ({DateTime.Now.Year}).");
                 return;
             }
 
-            // 4. Validar cantidad de ejemplares: numérico y mayor que cero
             if (!int.TryParse(ejemplaresTexto, out int ejemplares) || ejemplares <= 0)
             {
                 MostrarErrorFormulario("La cantidad de ejemplares debe ser un número entero mayor que cero.");
                 return;
             }
 
-            // 5. Validar unicidad de ISBN si se proporciona
+            // Aqui validamos que el ISBN no se repita
+            // El ISBN es un indicador unico que tienen los libros a nivel mundial
             if (!string.IsNullOrWhiteSpace(isbn))
             {
                 int idActual = _libroEnEdicionId ?? 0;
@@ -490,7 +467,7 @@ namespace BookManager.Views
                 }
             }
 
-            // 6. Al editar: No permitir reducir ejemplares por debajo de los préstamos activos
+            // Bloqueo para evitar que no se puedan reducir la cantidad de libros cuando hay prestamos activos
             if (_libroEnEdicionId != null)
             {
                 int prestamosActivos = _prestamos.Count(p => p.LibroId == _libroEnEdicionId.Value && p.FechaDevolucion == null);
@@ -503,14 +480,12 @@ namespace BookManager.Views
 
             try
             {
-                // 1. Crear una lista temporal con objetos independientes (clonación profunda)
                 var listaTemporal = ClonarLibros(_libros);
 
                 string mensajeExito;
 
                 if (_libroEnEdicionId == null)
                 {
-                    // 2a. Operación Agregar sobre la lista temporal
                     int nuevoId = listaTemporal.Count > 0 ? listaTemporal.Max(l => l.Id) + 1 : 1;
 
                     var nuevoLibro = new Libro
@@ -529,7 +504,6 @@ namespace BookManager.Views
                 }
                 else
                 {
-                    // 2b. Operación Editar sobre la lista temporal
                     var libroEnTemporal = listaTemporal.FirstOrDefault(l => l.Id == _libroEnEdicionId.Value);
                     if (libroEnTemporal == null)
                     {
@@ -547,13 +521,10 @@ namespace BookManager.Views
                     mensajeExito = $"Libro \"{titulo}\" (ID: {libroEnTemporal.Id}) actualizado exitosamente ({ejemplares} ejemplar(es)).";
                 }
 
-                // 3. Ejecutar y esperar el guardado en el archivo JSON
                 await _jsonService.GuardarListaAsync("libros.json", listaTemporal);
 
-                // 4. Únicamente si el guardado en JSON fue exitoso, actualizamos la lista oficial en memoria
                 _libros = listaTemporal;
 
-                // 5. Ocultar formulario, mostrar mensaje de éxito y refrescar la tabla visual
                 PanelFormulario.Visibility = Visibility.Collapsed;
                 LimpiarFormulario();
                 MostrarMensaje(mensajeExito, true);
@@ -562,7 +533,7 @@ namespace BookManager.Views
             }
             catch (Exception ex)
             {
-                // Si la escritura falla: _libros queda intacto, la tabla no se altera y se permite reintentar
+                // Si algo llega a fallar no se guardan los cambios por la clonacion del inicio
                 MostrarErrorFormulario($"Error al guardar en el archivo JSON: {ex.Message}. Los cambios no se aplicaron.");
             }
         }
@@ -573,9 +544,7 @@ namespace BookManager.Views
             TxtErrorFormulario.Visibility = Visibility.Visible;
         }
 
-        // ==========================================
-        // ELIMINAR LIBRO
-        // ==========================================
+        // Aqui esta toda la logica de cuando se elimina un libro
 
         private async void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
@@ -584,7 +553,7 @@ namespace BookManager.Views
                 return;
             }
 
-            // 1. Comprobar si existe algún préstamo asociado al libro (activo o devuelto)
+            // Primero comprobamos que no tengamos ningun libro asociado a un prestamo para evitar negativos
             bool tieneHistorialPrestamos = _prestamos.Any(p => p.LibroId == itemSeleccionado.Id);
             if (tieneHistorialPrestamos)
             {
@@ -592,7 +561,7 @@ namespace BookManager.Views
                 return;
             }
 
-            // 2. Si no tiene préstamos asociados, solicitar confirmación al usuario
+            // Confirmamos eliminacion en el dado caso de que el libro no tenga prestamo activo 
             var dialogo = new ContentDialog
             {
                 Title = "Confirmar eliminación",
@@ -608,34 +577,26 @@ namespace BookManager.Views
             {
                 try
                 {
-                    // 1. Crear una lista temporal con objetos independientes
                     var listaTemporal = ClonarLibros(_libros);
 
-                    // 2. Aplicar la eliminación sobre la lista temporal
                     listaTemporal.RemoveAll(l => l.Id == itemSeleccionado.Id);
 
-                    // 3. Ejecutar y esperar el guardado en el archivo JSON
                     await _jsonService.GuardarListaAsync("libros.json", listaTemporal);
 
-                    // 4. Únicamente si el guardado en JSON fue exitoso, actualizamos la lista en memoria
                     _libros = listaTemporal;
 
-                    // 5. Refrescar la tabla y notificar éxito
                     MostrarMensaje($"El libro \"{itemSeleccionado.Titulo}\" fue eliminado exitosamente.", true);
                     ConstruirListaVista();
                     AplicarBusquedaYFiltros();
                 }
                 catch (Exception ex)
                 {
-                    // Si la escritura falla: _libros queda intacto, la tabla no se altera y se informa el error
                     MostrarMensaje($"Error al eliminar el libro en el archivo JSON: {ex.Message}. No se realizó ningún cambio.", false);
                 }
             }
         }
 
-        // ==========================================
-        // NAVEGACIÓN Y MENSAJES
-        // ==========================================
+        // Logica para volver a la pantalla de dashboard
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
