@@ -592,3 +592,9 @@ C:\Users\braia\source\repos\Bookmanager\BookManager\obj\x64\Debug\net8.0-windows
 C:\Users\braia\source\repos\Bookmanager\BookManager\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\ChatFlotante.g.cs
 C:\Users\braia\source\repos\Bookmanager\BookManager\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\ChatFlotante.xaml
 C:\Users\braia\source\repos\Bookmanager\BookManager\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\ChatFlotante.xbf
+C:\Users\LunaI\source\repos\BookManager\BookManager\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\ChatFlotante.xbf
+C:\Users\LunaI\source\repos\BookManager\BookManager\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\ChatFlotante.g.i.cs
+C:\Users\LunaI\source\repos\BookManager\BookManager\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\ChatFlotante.g.cs
+C:\Users\LunaI\source\repos\BookManager\BookManager\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\ChatFlotante.xaml
+C:\Users\LunaI\source\repos\BookManager\BookManager\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\Views\ChatFlotante.xbf
+C:\Users\LunaI\source\repos\BookManager\BookManager\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\BookManager.sourcelink.json

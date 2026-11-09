@@ -11,7 +11,7 @@
     Title="BookManager">
 
     <Grid Background="{StaticResource BrushFondoGeneral}" RequestedTheme="Light">
-        <!-- Frame principal para cargar las páginas (sin panel lateral ni menús desplegables) -->
+        <!-- RootFrame se refiere a login -->
         <Frame x:ConnectionId='2' x:Name="RootFrame" />
 
         <!-- Asistente BookManager (IA local con Ollama): flotante, superpuesto a RootFrame.

@@ -43,7 +43,7 @@
     </Extension>
   </Extensions>
   <build:Metadata>
-    <build:Item Name="Microsoft.UI.Xaml.Markup.Compiler.dll" Version="3.0.0.0" />
+    <build:Item Name="XamlCompiler.exe" Version="3.0.0.0" />
     <build:Item Name="makepri.exe" Version="10.0.28000.2957 (WinBuild.160101.0800)" />
   </build:Metadata>
 </Package>
