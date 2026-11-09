@@ -15,7 +15,9 @@ using BookManager.Services;
 
 namespace BookManager.Views
 {
-    // Elemento auxiliar para presentar lectores en el ComboBox de registro
+    /// <summary>
+    /// Estos elemento sirven para mostrar las opciones en los combobox 
+    /// </summary>
     public class LectorComboItem
     {
         public int Id { get; set; }
@@ -25,7 +27,6 @@ namespace BookManager.Views
         public override string ToString() => TextoPresentacion;
     }
 
-    // Elemento auxiliar para presentar libros disponibles en el ComboBox de registro
     public class LibroComboItem
     {
         public int Id { get; set; }
@@ -35,7 +36,6 @@ namespace BookManager.Views
         public override string ToString() => TextoPresentacion;
     }
 
-    // Elemento auxiliar para presentar filas en la tabla del historial de préstamos
     public class PrestamoItemVista
     {
         public int Id { get; set; }
@@ -67,7 +67,6 @@ namespace BookManager.Views
         private List<Prestamo> _prestamos = new();
         private List<PrestamoItemVista> _prestamosVista = new();
 
-        // Bandera de inicialización para evitar disparos prematuros de eventos XAML
         private bool _estaCargado = false;
 
         public PrestamosPage()
@@ -87,7 +86,6 @@ namespace BookManager.Views
             await CargarDatosAsync();
         }
 
-        // Carga asíncrona de los 3 archivos JSON y preparación de la interfaz
         private async Task CargarDatosAsync()
         {
             try
@@ -97,14 +95,12 @@ namespace BookManager.Views
                 _lectores = await _jsonService.LeerListaAsync<Lector>("lectores.json");
                 _prestamos = await _jsonService.LeerListaAsync<Prestamo>("prestamos.json");
 
-                // Validar que ningún libro contenga cantidad de ejemplares <= 0 en el JSON
                 var libroInvalido = _libros.FirstOrDefault(l => l.CantidadEjemplares <= 0);
                 if (libroInvalido != null)
                 {
                     throw new InvalidOperationException($"El libro \"{libroInvalido.Titulo}\" (ID: {libroInvalido.Id}) tiene una cantidad de ejemplares inválida ({libroInvalido.CantidadEjemplares}). Debe ser mayor que cero.");
                 }
 
-                // Configurar fecha de préstamo como hoy y fecha de vencimiento inicial (+7 días)
                 TxtFechaPrestamo.Text = DateTime.Today.ToString("dd/MM/yyyy");
                 DpkFechaVencimiento.Date = DateTimeOffset.Now.AddDays(7);
 
@@ -122,7 +118,6 @@ namespace BookManager.Views
             }
         }
 
-        // Llena el ComboBox de lectores con todos los lectores registrados
         private void PoblarComboLectores()
         {
             var items = _lectores.Select(l => new LectorComboItem
@@ -136,7 +131,6 @@ namespace BookManager.Views
             CmbLectores.SelectedItem = null;
         }
 
-        // Llena el ComboBox de libros únicamente con títulos que posean ejemplares disponibles
         private void PoblarComboLibros()
         {
             var items = new List<LibroComboItem>();
@@ -145,7 +139,6 @@ namespace BookManager.Views
                 int prestamosActivos = _prestamos.Count(p => p.LibroId == libro.Id && p.FechaDevolucion == null);
                 int disponibles = libro.CantidadEjemplares - prestamosActivos;
 
-                // Solo mostrar títulos con existencias disponibles (> 0) y sin inconsistencias
                 if (disponibles > 0 && prestamosActivos < libro.CantidadEjemplares)
                 {
                     items.Add(new LibroComboItem
@@ -161,7 +154,6 @@ namespace BookManager.Views
             CmbLibros.SelectedItem = null;
         }
 
-        // Crea una copia profunda independiente de la lista de préstamos para guardado atómico
         private List<Prestamo> ClonarPrestamos(List<Prestamo> origen)
         {
             return origen.Select(p => new Prestamo
@@ -175,7 +167,6 @@ namespace BookManager.Views
             }).ToList();
         }
 
-        // Convierte los registros de préstamo a elementos de vista con títulos, nombres y estados calculados
         private void ConstruirListaVista()
         {
             DateTime hoy = DateTime.Today;
@@ -241,7 +232,6 @@ namespace BookManager.Views
             }).OrderByDescending(p => p.Id).ToList();
         }
 
-        // Aplica el filtro seleccionado (Todos, Activos, Vencidos, Devueltos) a la tabla
         private void AplicarFiltros()
         {
             if (!_estaCargado || ListaPrestamos == null) return;
@@ -271,7 +261,6 @@ namespace BookManager.Views
             ActualizarBotonDevolucion();
         }
 
-        // Habilita el botón de devolución únicamente si hay un préstamo activo seleccionado
         private void ActualizarBotonDevolucion()
         {
             if (ListaPrestamos?.SelectedItem is PrestamoItemVista item)
@@ -284,30 +273,25 @@ namespace BookManager.Views
             }
         }
 
-        // Evento al cambiar la selección en la tabla de préstamos
         private void ListaPrestamos_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!_estaCargado || ListaPrestamos == null) return;
             ActualizarBotonDevolucion();
         }
 
-        // Evento al cambiar el filtro de estado
         private void CmbFiltro_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!_estaCargado || ListaPrestamos == null) return;
             AplicarFiltros();
         }
 
-        // ========================================================
-        // REGISTRO DE NUEVO PRÉSTAMO
-        // ========================================================
+        // Logica para registrar nuevos prestamos
 
         private async void BtnRegistrarPrestamo_Click(object sender, RoutedEventArgs e)
         {
             OcultarErrorFormulario();
             OcultarMensaje();
 
-            // 1. Validar lector seleccionado
             if (CmbLectores.SelectedItem is not LectorComboItem lectorSeleccionado)
             {
                 MostrarErrorFormulario("Debe seleccionar un lector de la lista.");
@@ -321,7 +305,6 @@ namespace BookManager.Views
                 return;
             }
 
-            // 2. Validar libro seleccionado
             if (CmbLibros.SelectedItem is not LibroComboItem libroSeleccionado)
             {
                 MostrarErrorFormulario("Debe seleccionar un libro de la lista.");
@@ -335,7 +318,6 @@ namespace BookManager.Views
                 return;
             }
 
-            // 3. Validar disponibilidad física e inconsistencias de inventario
             int prestamosActivos = _prestamos.Count(p => p.LibroId == libro.Id && p.FechaDevolucion == null);
             if (prestamosActivos > libro.CantidadEjemplares)
             {
@@ -349,7 +331,6 @@ namespace BookManager.Views
                 return;
             }
 
-            // 4. Validar fecha de vencimiento (igual o posterior a hoy)
             DateTime fechaVencimiento = DpkFechaVencimiento.Date.Date;
             if (fechaVencimiento < DateTime.Today)
             {
@@ -357,10 +338,8 @@ namespace BookManager.Views
                 return;
             }
 
-            // 5. Generar ID autoincremental
             int nuevoId = _prestamos.Count > 0 ? _prestamos.Max(p => p.Id) + 1 : 1;
 
-            // 6. Crear objeto de préstamo
             var nuevoPrestamo = new Prestamo
             {
                 Id = nuevoId,
@@ -371,7 +350,6 @@ namespace BookManager.Views
                 FechaDevolucion = null
             };
 
-            // 7. Persistencia atómica: crear copia de lista, agregar préstamo y guardar en disco
             List<Prestamo> listaTemporal = ClonarPrestamos(_prestamos);
             listaTemporal.Add(nuevoPrestamo);
 
@@ -379,14 +357,12 @@ namespace BookManager.Views
             {
                 await _jsonService.GuardarListaAsync("prestamos.json", listaTemporal);
 
-                // Únicamente tras el guardado exitoso se reemplaza la lista en memoria
                 _prestamos = listaTemporal;
 
                 ConstruirListaVista();
                 AplicarFiltros();
                 PoblarComboLibros();
 
-                // Limpiar selecciones del formulario
                 CmbLectores.SelectedItem = null;
                 CmbLibros.SelectedItem = null;
                 DpkFechaVencimiento.Date = DateTimeOffset.Now.AddDays(7);
@@ -400,9 +376,7 @@ namespace BookManager.Views
             }
         }
 
-        // ========================================================
-        // REGISTRO DE DEVOLUCIÓN
-        // ========================================================
+        // Logica para registrar devolucion
 
         private async void BtnDevolver_Click(object sender, RoutedEventArgs e)
         {
@@ -434,14 +408,12 @@ namespace BookManager.Views
                 return;
             }
 
-            // Asignar fecha y hora actual de devolución
             prestamoEnCopia.FechaDevolucion = DateTime.Now;
 
             try
             {
                 await _jsonService.GuardarListaAsync("prestamos.json", listaTemporal);
 
-                // Únicamente tras el guardado exitoso se reemplaza la lista en memoria
                 _prestamos = listaTemporal;
 
                 ConstruirListaVista();
@@ -456,9 +428,7 @@ namespace BookManager.Views
             }
         }
 
-        // ========================================================
-        // NAVEGACIÓN Y MENSAJES DE INTERFAZ
-        // ========================================================
+        // Mensaje y regreso al dashboard con el navigate
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
@@ -488,11 +458,8 @@ namespace BookManager.Views
             TxtErrorFormulario.Visibility = Visibility.Collapsed;
         }
 
-        // ========================================================
-        // VALIDACIONES DE ENTRADA Y RESTRICCIONES VISUALES
-        // ========================================================
+        // Restricciones para evitar que se pongan espacios, caracteres especiales etc.
 
-        // Evita que el usuario comience con espacios desde el teclado
         private void BloquearEspacioInicial_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Space)
@@ -504,7 +471,6 @@ namespace BookManager.Views
             }
         }
 
-        // Elimina espacios iniciales al pegar texto, conservando los espacios internos legítimos
         private void BloquearEspacioInicial_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender is TextBox tb && tb.Text.StartsWith(' '))
