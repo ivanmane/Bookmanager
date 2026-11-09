@@ -3,6 +3,7 @@ using System.IO;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Navigation;
 using Windows.UI;
 using BookManager.Views;
 
@@ -17,8 +18,26 @@ namespace BookManager
             ConfigurarBarraDeTitulo();
             ConfigurarIconoVentana();
 
+            // El asistente flotante se muestra/oculta segun la pagina a la que se navega.
+            // Se suscribe ANTES de la primera navegacion para que LoginPage lo deje oculto.
+            RootFrame.Navigated += RootFrame_Navigated;
+
             // Aqui le decimos a la app que LoginPage es el rootframe, asi al abrir el proyecto inciara aca.
             RootFrame.Navigate(typeof(LoginPage));
+        }
+
+        // Chat flotante: oculto en LoginPage (y con la conversacion borrada), visible en el resto.
+        private void RootFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            if (e.SourcePageType == typeof(LoginPage))
+            {
+                ChatAsistente.LimpiarSesion();
+                ChatAsistente.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                ChatAsistente.Visibility = Visibility.Visible;
+            }
         }
 
         private void ConfigurarBarraDeTitulo()

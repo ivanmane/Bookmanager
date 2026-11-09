@@ -226,7 +226,7 @@ namespace BookManager.BookManager_XamlTypeInfo
         
         private void InitTypeTables()
         {
-            _typeNameTable = new string[24];
+            _typeNameTable = new string[26];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
@@ -234,25 +234,27 @@ namespace BookManager.BookManager_XamlTypeInfo
             _typeNameTable[4] = "Windows.UI.Color";
             _typeNameTable[5] = "System.ValueType";
             _typeNameTable[6] = "Byte";
-            _typeNameTable[7] = "BookManager.MainWindow";
-            _typeNameTable[8] = "Microsoft.UI.Xaml.Window";
-            _typeNameTable[9] = "BookManager.Views.CatalogoPage";
-            _typeNameTable[10] = "Microsoft.UI.Xaml.Controls.Page";
-            _typeNameTable[11] = "Microsoft.UI.Xaml.Controls.UserControl";
-            _typeNameTable[12] = "Microsoft.UI.Xaml.Controls.ProgressRing";
-            _typeNameTable[13] = "Microsoft.UI.Xaml.Controls.Control";
-            _typeNameTable[14] = "Double";
-            _typeNameTable[15] = "Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings";
-            _typeNameTable[16] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[17] = "BookManager.Views.DashboardPage";
-            _typeNameTable[18] = "BookManager.Views.LectoresPage";
-            _typeNameTable[19] = "BookManager.Views.LoginPage";
-            _typeNameTable[20] = "BookManager.Views.PrestamosPage";
-            _typeNameTable[21] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[22] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
-            _typeNameTable[23] = "Int32";
+            _typeNameTable[7] = "BookManager.Views.ChatFlotante";
+            _typeNameTable[8] = "Microsoft.UI.Xaml.Controls.UserControl";
+            _typeNameTable[9] = "BookManager.MainWindow";
+            _typeNameTable[10] = "Microsoft.UI.Xaml.Window";
+            _typeNameTable[11] = "BookManager.Views.CatalogoPage";
+            _typeNameTable[12] = "Microsoft.UI.Xaml.Controls.Page";
+            _typeNameTable[13] = "Microsoft.UI.Xaml.Controls.Button";
+            _typeNameTable[14] = "Microsoft.UI.Xaml.Controls.ProgressRing";
+            _typeNameTable[15] = "Microsoft.UI.Xaml.Controls.Control";
+            _typeNameTable[16] = "Double";
+            _typeNameTable[17] = "Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings";
+            _typeNameTable[18] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[19] = "BookManager.Views.DashboardPage";
+            _typeNameTable[20] = "BookManager.Views.LectoresPage";
+            _typeNameTable[21] = "BookManager.Views.LoginPage";
+            _typeNameTable[22] = "BookManager.Views.PrestamosPage";
+            _typeNameTable[23] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[24] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
+            _typeNameTable[25] = "Int32";
 
-            _typeTable = new global::System.Type[24];
+            _typeTable = new global::System.Type[26];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
@@ -260,23 +262,25 @@ namespace BookManager.BookManager_XamlTypeInfo
             _typeTable[4] = typeof(global::Windows.UI.Color);
             _typeTable[5] = typeof(global::System.ValueType);
             _typeTable[6] = typeof(global::System.Byte);
-            _typeTable[7] = typeof(global::BookManager.MainWindow);
-            _typeTable[8] = typeof(global::Microsoft.UI.Xaml.Window);
-            _typeTable[9] = typeof(global::BookManager.Views.CatalogoPage);
-            _typeTable[10] = typeof(global::Microsoft.UI.Xaml.Controls.Page);
-            _typeTable[11] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
-            _typeTable[12] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing);
-            _typeTable[13] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
-            _typeTable[14] = typeof(global::System.Double);
-            _typeTable[15] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings);
-            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[17] = typeof(global::BookManager.Views.DashboardPage);
-            _typeTable[18] = typeof(global::BookManager.Views.LectoresPage);
-            _typeTable[19] = typeof(global::BookManager.Views.LoginPage);
-            _typeTable[20] = typeof(global::BookManager.Views.PrestamosPage);
-            _typeTable[21] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[22] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
-            _typeTable[23] = typeof(global::System.Int32);
+            _typeTable[7] = typeof(global::BookManager.Views.ChatFlotante);
+            _typeTable[8] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
+            _typeTable[9] = typeof(global::BookManager.MainWindow);
+            _typeTable[10] = typeof(global::Microsoft.UI.Xaml.Window);
+            _typeTable[11] = typeof(global::BookManager.Views.CatalogoPage);
+            _typeTable[12] = typeof(global::Microsoft.UI.Xaml.Controls.Page);
+            _typeTable[13] = typeof(global::Microsoft.UI.Xaml.Controls.Button);
+            _typeTable[14] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing);
+            _typeTable[15] = typeof(global::Microsoft.UI.Xaml.Controls.Control);
+            _typeTable[16] = typeof(global::System.Double);
+            _typeTable[17] = typeof(global::Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings);
+            _typeTable[18] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[19] = typeof(global::BookManager.Views.DashboardPage);
+            _typeTable[20] = typeof(global::BookManager.Views.LectoresPage);
+            _typeTable[21] = typeof(global::BookManager.Views.LoginPage);
+            _typeTable[22] = typeof(global::BookManager.Views.PrestamosPage);
+            _typeTable[23] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[24] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
+            _typeTable[25] = typeof(global::System.Int32);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -312,28 +316,30 @@ namespace BookManager.BookManager_XamlTypeInfo
         }
 
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
-        private object Activate_7_MainWindow() { return new global::BookManager.MainWindow(); }
-        private object Activate_9_CatalogoPage() { return new global::BookManager.Views.CatalogoPage(); }
-        private object Activate_12_ProgressRing() { return new global::Microsoft.UI.Xaml.Controls.ProgressRing(); }
-        private object Activate_17_DashboardPage() { return new global::BookManager.Views.DashboardPage(); }
-        private object Activate_18_LectoresPage() { return new global::BookManager.Views.LectoresPage(); }
-        private object Activate_19_LoginPage() { return new global::BookManager.Views.LoginPage(); }
-        private object Activate_20_PrestamosPage() { return new global::BookManager.Views.PrestamosPage(); }
-        private object Activate_21_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_7_ChatFlotante() { return new global::BookManager.Views.ChatFlotante(); }
+        private object Activate_9_MainWindow() { return new global::BookManager.MainWindow(); }
+        private object Activate_11_CatalogoPage() { return new global::BookManager.Views.CatalogoPage(); }
+        private object Activate_14_ProgressRing() { return new global::Microsoft.UI.Xaml.Controls.ProgressRing(); }
+        private object Activate_19_DashboardPage() { return new global::BookManager.Views.DashboardPage(); }
+        private object Activate_20_LectoresPage() { return new global::BookManager.Views.LectoresPage(); }
+        private object Activate_21_LoginPage() { return new global::BookManager.Views.LoginPage(); }
+        private object Activate_22_PrestamosPage() { return new global::BookManager.Views.PrestamosPage(); }
+        private object Activate_23_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
         private void StaticInitializer_0_XamlControlsResources() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources).TypeHandle);
         private void StaticInitializer_4_Color() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Windows.UI.Color).TypeHandle);
         private void StaticInitializer_5_ValueType() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.ValueType).TypeHandle);
         private void StaticInitializer_6_Byte() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Byte).TypeHandle);
-        private void StaticInitializer_7_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.MainWindow).TypeHandle);
-        private void StaticInitializer_9_CatalogoPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.CatalogoPage).TypeHandle);
-        private void StaticInitializer_12_ProgressRing() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing).TypeHandle);
-        private void StaticInitializer_15_ProgressRingTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings).TypeHandle);
-        private void StaticInitializer_17_DashboardPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.DashboardPage).TypeHandle);
-        private void StaticInitializer_18_LectoresPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.LectoresPage).TypeHandle);
-        private void StaticInitializer_19_LoginPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.LoginPage).TypeHandle);
-        private void StaticInitializer_20_PrestamosPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.PrestamosPage).TypeHandle);
-        private void StaticInitializer_21_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
-        private void StaticInitializer_22_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
+        private void StaticInitializer_7_ChatFlotante() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.ChatFlotante).TypeHandle);
+        private void StaticInitializer_9_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.MainWindow).TypeHandle);
+        private void StaticInitializer_11_CatalogoPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.CatalogoPage).TypeHandle);
+        private void StaticInitializer_14_ProgressRing() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressRing).TypeHandle);
+        private void StaticInitializer_17_ProgressRingTemplateSettings() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings).TypeHandle);
+        private void StaticInitializer_19_DashboardPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.DashboardPage).TypeHandle);
+        private void StaticInitializer_20_LectoresPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.LectoresPage).TypeHandle);
+        private void StaticInitializer_21_LoginPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.LoginPage).TypeHandle);
+        private void StaticInitializer_22_PrestamosPage() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::BookManager.Views.PrestamosPage).TypeHandle);
+        private void StaticInitializer_23_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
+        private void StaticInitializer_24_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -341,7 +347,7 @@ namespace BookManager.BookManager_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_22_IList(object instance, object item)
+        private void VectorAdd_24_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -402,38 +408,50 @@ namespace BookManager.BookManager_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 7:   //  BookManager.MainWindow
+            case 7:   //  BookManager.Views.ChatFlotante
+                userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.UserControl"));
+                userType.Activator = Activate_7_ChatFlotante;
+                userType.StaticInitializer = StaticInitializer_7_ChatFlotante;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 8:   //  Microsoft.UI.Xaml.Controls.UserControl
+                xamlType = new global::BookManager.BookManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 9:   //  BookManager.MainWindow
                 userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_7_MainWindow;
-                userType.StaticInitializer = StaticInitializer_7_MainWindow;
+                userType.Activator = Activate_9_MainWindow;
+                userType.StaticInitializer = StaticInitializer_9_MainWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 8:   //  Microsoft.UI.Xaml.Window
+            case 10:   //  Microsoft.UI.Xaml.Window
                 xamlType = new global::BookManager.BookManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 9:   //  BookManager.Views.CatalogoPage
+            case 11:   //  BookManager.Views.CatalogoPage
                 userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_9_CatalogoPage;
-                userType.StaticInitializer = StaticInitializer_9_CatalogoPage;
+                userType.Activator = Activate_11_CatalogoPage;
+                userType.StaticInitializer = StaticInitializer_11_CatalogoPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 10:   //  Microsoft.UI.Xaml.Controls.Page
+            case 12:   //  Microsoft.UI.Xaml.Controls.Page
                 xamlType = new global::BookManager.BookManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 11:   //  Microsoft.UI.Xaml.Controls.UserControl
+            case 13:   //  Microsoft.UI.Xaml.Controls.Button
                 xamlType = new global::BookManager.BookManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 12:   //  Microsoft.UI.Xaml.Controls.ProgressRing
+            case 14:   //  Microsoft.UI.Xaml.Controls.ProgressRing
                 userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Control"));
-                userType.Activator = Activate_12_ProgressRing;
-                userType.StaticInitializer = StaticInitializer_12_ProgressRing;
+                userType.Activator = Activate_14_ProgressRing;
+                userType.StaticInitializer = StaticInitializer_14_ProgressRing;
                 userType.AddMemberName("IsActive");
                 userType.AddMemberName("IsIndeterminate");
                 userType.AddMemberName("Maximum");
@@ -443,61 +461,61 @@ namespace BookManager.BookManager_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 13:   //  Microsoft.UI.Xaml.Controls.Control
+            case 15:   //  Microsoft.UI.Xaml.Controls.Control
                 xamlType = new global::BookManager.BookManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 14:   //  Double
+            case 16:   //  Double
                 xamlType = new global::BookManager.BookManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 15:   //  Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings
+            case 17:   //  Microsoft.UI.Xaml.Controls.ProgressRingTemplateSettings
                 userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.StaticInitializer = StaticInitializer_15_ProgressRingTemplateSettings;
+                userType.StaticInitializer = StaticInitializer_17_ProgressRingTemplateSettings;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 16:   //  Microsoft.UI.Xaml.DependencyObject
+            case 18:   //  Microsoft.UI.Xaml.DependencyObject
                 xamlType = new global::BookManager.BookManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 17:   //  BookManager.Views.DashboardPage
+            case 19:   //  BookManager.Views.DashboardPage
                 userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_17_DashboardPage;
-                userType.StaticInitializer = StaticInitializer_17_DashboardPage;
+                userType.Activator = Activate_19_DashboardPage;
+                userType.StaticInitializer = StaticInitializer_19_DashboardPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 18:   //  BookManager.Views.LectoresPage
+            case 20:   //  BookManager.Views.LectoresPage
                 userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_18_LectoresPage;
-                userType.StaticInitializer = StaticInitializer_18_LectoresPage;
+                userType.Activator = Activate_20_LectoresPage;
+                userType.StaticInitializer = StaticInitializer_20_LectoresPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 19:   //  BookManager.Views.LoginPage
+            case 21:   //  BookManager.Views.LoginPage
                 userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_19_LoginPage;
-                userType.StaticInitializer = StaticInitializer_19_LoginPage;
+                userType.Activator = Activate_21_LoginPage;
+                userType.StaticInitializer = StaticInitializer_21_LoginPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 20:   //  BookManager.Views.PrestamosPage
+            case 22:   //  BookManager.Views.PrestamosPage
                 userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_20_PrestamosPage;
-                userType.StaticInitializer = StaticInitializer_20_PrestamosPage;
+                userType.Activator = Activate_22_PrestamosPage;
+                userType.StaticInitializer = StaticInitializer_22_PrestamosPage;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 21:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 23:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_21_TreeViewNode;
-                userType.StaticInitializer = StaticInitializer_21_TreeViewNode;
+                userType.Activator = Activate_23_TreeViewNode;
+                userType.StaticInitializer = StaticInitializer_23_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -509,15 +527,15 @@ namespace BookManager.BookManager_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 22:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 24:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::BookManager.BookManager_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_22_IList;
-                userType.CollectionAdd = VectorAdd_22_IList;
+                userType.StaticInitializer = StaticInitializer_24_IList;
+                userType.CollectionAdd = VectorAdd_24_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 23:   //  Int32
+            case 25:   //  Int32
                 xamlType = new global::BookManager.BookManager_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
