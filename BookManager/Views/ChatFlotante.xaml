@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UserControl
+    x:Class="BookManager.Views.ChatFlotante"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    SizeChanged="ChatFlotante_SizeChanged">
+
+    <UserControl.Resources>
+        <!-- Botón del chat: fondo azul marino, hover azul secundario, presionado turquesa -->
+        <Style x:Key="BotonChatStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource BrushAzulMarino}" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="Raiz"
+                              Background="{TemplateBinding Background}"
+                              CornerRadius="{TemplateBinding CornerRadius}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <VisualState.Setters>
+                                            <Setter Target="Raiz.Background" Value="{StaticResource BrushAzulSecundario}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <VisualState.Setters>
+                                            <Setter Target="Raiz.Background" Value="{StaticResource BrushTurquesaAcento}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <VisualState.Setters>
+                                            <Setter Target="Raiz.Background" Value="#94A3B8" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="Contenido"
+                                              Foreground="{TemplateBinding Foreground}"
+                                              HorizontalAlignment="Center"
+                                              VerticalAlignment="Center" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <!-- IMPORTANTE: este Grid raíz NO tiene Background para que los clics
+         pasen a la página que está debajo cuando el panel está cerrado. -->
+    <Grid x:Name="RaizChat" Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- ===================== PANEL FLOTANTE ===================== -->
+        <Border x:Name="PanelChat"
+                Grid.Row="0"
+                Visibility="Collapsed"
+                Width="370"
+                Height="480"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,12"
+                Background="{StaticResource BrushSuperficie}"
+                BorderBrush="{StaticResource BrushBorde}"
+                BorderThickness="1"
+                CornerRadius="12">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Encabezado -->
+                <Border Grid.Row="0"
+                        Background="{StaticResource BrushAzulMarino}"
+                        CornerRadius="11,11,0,0"
+                        Padding="14,10,8,10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <FontIcon Grid.Column="0"
+                                  Glyph="&#xE8BD;"
+                                  FontSize="20"
+                                  Foreground="White"
+                                  Margin="0,0,10,0" />
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center" Spacing="2">
+                            <TextBlock Text="Asistente BookManager"
+                                       Foreground="White"
+                                       FontSize="15"
+                                       FontWeight="SemiBold" />
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <Ellipse x:Name="PuntoEstado"
+                                         Width="8"
+                                         Height="8"
+                                         Fill="#94A3B8"
+                                         VerticalAlignment="Center" />
+                                <TextBlock x:Name="TxtEstadoIA"
+                                           Text="IA local · Ollama"
+                                           Foreground="#D6E4F5"
+                                           FontSize="11.5" />
+                            </StackPanel>
+                        </StackPanel>
+
+                        <Button x:Name="BtnCerrar"
+                                Grid.Column="2"
+                                Style="{StaticResource BotonChatStyle}"
+                                Background="Transparent"
+                                Width="32"
+                                Height="32"
+                                Click="BtnCerrar_Click"
+                                ToolTipService.ToolTip="Cerrar"
+                                AutomationProperties.Name="Cerrar asistente">
+                            <FontIcon Glyph="&#xE711;" FontSize="12" />
+                        </Button>
+                    </Grid>
+                </Border>
+
+                <!-- Área de conversación -->
+                <ScrollViewer x:Name="ScrollMensajes"
+                              Grid.Row="1"
+                              Background="{StaticResource BrushFondoGeneral}"
+                              VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              HorizontalScrollMode="Disabled">
+                    <StackPanel x:Name="PanelMensajes" Padding="12" Spacing="8" />
+                </ScrollViewer>
+
+                <!-- Indicador de espera -->
+                <Border x:Name="IndicadorEspera"
+                        Grid.Row="2"
+                        Visibility="Collapsed"
+                        Background="{StaticResource BrushFondoGeneral}"
+                        Padding="14,4,14,8">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <ProgressRing IsActive="True" Width="16" Height="16" />
+                        <TextBlock Text="El asistente está escribiendo…"
+                                   Foreground="{StaticResource BrushTextoSecundario}"
+                                   FontSize="12"
+                                   VerticalAlignment="Center" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Entrada de texto -->
+                <Border Grid.Row="3"
+                        BorderBrush="{StaticResource BrushBorde}"
+                        BorderThickness="0,1,0,0"
+                        Background="{StaticResource BrushSuperficie}"
+                        CornerRadius="0,0,11,11"
+                        Padding="10">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox x:Name="TxtMensaje"
+                                 Grid.Column="0"
+                                 PlaceholderText="Escribe tu pregunta…"
+                                 MaxLength="400"
+                                 AcceptsReturn="False"
+                                 TextWrapping="NoWrap"
+                                 VerticalAlignment="Center"
+                                 KeyDown="TxtMensaje_KeyDown"
+                                 PreviewKeyDown="TxtMensaje_PreviewKeyDown"
+                                 AutomationProperties.Name="Mensaje para el asistente" />
+
+                        <Button x:Name="BtnEnviar"
+                                Grid.Column="1"
+                                Style="{StaticResource BotonChatStyle}"
+                                Width="40"
+                                Height="34"
+                                Margin="8,0,0,0"
+                                Click="BtnEnviar_Click"
+                                ToolTipService.ToolTip="Enviar"
+                                AutomationProperties.Name="Enviar mensaje">
+                            <FontIcon Glyph="&#xE724;" FontSize="14" />
+                        </Button>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- ===================== BOTÓN CIRCULAR FLOTANTE ===================== -->
+        <Button x:Name="BtnFlotante"
+                Grid.Row="1"
+                Style="{StaticResource BotonChatStyle}"
+                CornerRadius="28"
+                Width="56"
+                Height="56"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Click="BtnFlotante_Click"
+                ToolTipService.ToolTip="Asistente BookManager"
+                AutomationProperties.Name="Abrir Asistente BookManager">
+            <FontIcon Glyph="&#xE8BD;" FontSize="24" />
+        </Button>
+    </Grid>
+</UserControl>
