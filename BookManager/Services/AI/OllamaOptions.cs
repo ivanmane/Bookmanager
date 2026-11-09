@@ -18,8 +18,8 @@ namespace BookManager.Services.AI
         public double Temperature { get; set; } = 0.2;
         public double TopP { get; set; } = 0.9;
         public int TopK { get; set; } = 20;
-        public int NumCtx { get; set; } = 2048;
-        public int NumPredict { get; set; } = 160;
+        public int NumCtx { get; set; } = 3072;
+        public int NumPredict { get; set; } = 280;
 
         // Tiempo que Ollama mantiene el modelo cargado en memoria tras la última petición
         public string KeepAlive { get; set; } = "5m";

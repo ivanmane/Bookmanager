@@ -8,13 +8,15 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Windows.System;
+using BookManager.Models;
+using BookManager.Services;
 using BookManager.Services.AI;
 
 namespace BookManager.Views
 {
     /// <summary>
-    /// Chat flotante del Asistente BookManager (FASE 1: solo conversación con Ollama,
-    /// sin acceso a libros, lectores ni préstamos).
+    /// Chat flotante del Asistente BookManager conectado en tiempo real a los archivos JSON
+    /// de la biblioteca (libros, lectores y préstamos) a través de JsonService y Ollama.
     /// Se coloca una sola vez en MainWindow, encima de RootFrame.
     /// </summary>
     public sealed partial class ChatFlotante : UserControl
@@ -28,6 +30,7 @@ namespace BookManager.Views
 
         private readonly OllamaOptions _opciones = new();
         private readonly OllamaService _servicio;
+        private readonly JsonService _jsonService = new();
 
         // Historial en memoria (sin el mensaje de sistema). Nunca se guarda en disco.
         private readonly List<OllamaMessage> _historial = new();
@@ -247,8 +250,26 @@ namespace BookManager.Views
 
             try
             {
+                // Lectura asíncrona y fresca de los JSON en disco para alimentar a la IA en tiempo real
+                List<Libro> libros = new();
+                List<Lector> lectores = new();
+                List<Prestamo> prestamos = new();
+
+                try
+                {
+                    libros = await _jsonService.LeerListaAsync<Libro>("libros.json");
+                    lectores = await _jsonService.LeerListaAsync<Lector>("lectores.json");
+                    prestamos = await _jsonService.LeerListaAsync<Prestamo>("prestamos.json");
+                }
+                catch
+                {
+                    // Si ocurre algún fallo de lectura se continúa con las listas vacías
+                }
+
+                string contextoBiblioteca = PromptBiblioteca.ConstruirContextoBiblioteca(libros, lectores, prestamos);
+
                 // La llamada es asíncrona: la interfaz no se congela mientras Ollama genera.
-                OllamaResultado resultado = await _servicio.EnviarAsync(ConstruirMensajes(texto), cts.Token);
+                OllamaResultado resultado = await _servicio.EnviarAsync(ConstruirMensajes(texto, contextoBiblioteca), cts.Token);
 
                 // Si se cerró sesión mientras se generaba, la respuesta se descarta.
                 if (sesion != _sesion)
@@ -299,12 +320,12 @@ namespace BookManager.Views
             }
         }
 
-        // Mensaje de sistema + historial limitado + pregunta actual
-        private List<OllamaMessage> ConstruirMensajes(string preguntaActual)
+        // Mensaje de sistema (con datos actualizados en tiempo real) + historial limitado + pregunta actual
+        private List<OllamaMessage> ConstruirMensajes(string preguntaActual, string contextoBiblioteca)
         {
             var mensajes = new List<OllamaMessage>
             {
-                new OllamaMessage("system", PromptBiblioteca.InstruccionesSistema)
+                new OllamaMessage("system", PromptBiblioteca.ObtenerPromptSistema(contextoBiblioteca))
             };
 
             mensajes.AddRange(_historial);
