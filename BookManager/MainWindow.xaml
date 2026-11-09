@@ -10,7 +10,7 @@
     Title="BookManager">
 
     <Grid Background="{StaticResource BrushFondoGeneral}" RequestedTheme="Light">
-        <!-- Frame principal para cargar las páginas (sin panel lateral ni menús desplegables) -->
+        <!-- RootFrame se refiere a login -->
         <Frame x:Name="RootFrame" />
     </Grid>
 </Window>

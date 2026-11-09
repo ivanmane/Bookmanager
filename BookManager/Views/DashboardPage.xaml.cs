@@ -13,7 +13,9 @@ using BookManager.Services;
 
 namespace BookManager.Views
 {
-    // Clase auxiliar para la presentación de préstamos pendientes en el Dashboard
+    /// <summary>
+    /// Toda esta seccion se estan especificando los atributos de la lista para ver todos los prestamos pendientes
+    /// </summary>
     public class PrestamoPendienteVista
     {
         public int PrestamoId { get; set; }
@@ -28,7 +30,7 @@ namespace BookManager.Views
         public string CorreoLector { get; set; } = string.Empty;
         public string TelefonoLector { get; set; } = string.Empty;
 
-        // Propiedades auxiliares para ordenamiento estricto
+        // Estas propiedas nos serviran para filtrar la lista, por prioridad retraso o porque esta proxima la fecha de vencimiento
         public int Prioridad { get; set; }
         public int DiasRetraso { get; set; }
         public DateTime FechaVencimiento { get; set; }
