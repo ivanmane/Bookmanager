@@ -1,10 +1,104 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\braia\\source\\repos\\Bookmanager\\",
+  "WorkspaceRootPath": "C:\\Users\\LunaI\\source\\repos\\BookManager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\braia\\source\\repos\\bookmanager\\bookmanager\\views\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\services\\ai\\ollamaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\services\\ai\\ollamaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\services\\ai\\promptbiblioteca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\services\\ai\\promptbiblioteca.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\views\\dashboardpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\views\\dashboardpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\views\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\views\\loginpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\views\\catalogopage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\views\\catalogopage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\views\\chatflotante.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\views\\chatflotante.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\views\\chatflotante.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\views\\chatflotante.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\data\\prestamos.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\data\\prestamos.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\data\\libros.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\data\\libros.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\data\\lectores.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\data\\lectores.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\models\\libro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\models\\libro.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\models\\prestamo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\models\\prestamo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\models\\lector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\models\\lector.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\views\\lectorespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\views\\lectorespage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\views\\prestamospage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\views\\prestamospage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\views\\prestamospage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\views\\prestamospage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\services\\jsonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\services\\jsonservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\.nuget\\packages\\microsoft.windowsappsdk.foundation\\2.6.5\\include\\deploymentmanagerautoinitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\source\\repos\\bookmanager\\bookmanager\\package.appxmanifest||{4D47164B-07B6-4A52-A855-728D6A2E2AA3}",
+      "RelativeMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|solutionrelative:bookmanager\\package.appxmanifest||{4D47164B-07B6-4A52-A855-728D6A2E2AA3}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3674E60E-2CDE-5C78-87A0-FD34AC874FD3}|BookManager\\BookManager.csproj|c:\\users\\lunai\\.nuget\\packages\\microsoft.windowsappsdk.runtime\\2.6.5\\include\\windowsappsdk-versioninfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,15 +113,309 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "LoginPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\braia\\source\\repos\\Bookmanager\\BookManager\\Views\\LoginPage.xaml.cs",
-              "RelativeDocumentMoniker": "BookManager\\Views\\LoginPage.xaml.cs",
-              "ToolTip": "C:\\Users\\braia\\source\\repos\\Bookmanager\\BookManager\\Views\\LoginPage.xaml.cs",
-              "RelativeToolTip": "BookManager\\Views\\LoginPage.xaml.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "OllamaService.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Services\\AI\\OllamaService.cs",
+              "RelativeDocumentMoniker": "BookManager\\Services\\AI\\OllamaService.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Services\\AI\\OllamaService.cs",
+              "RelativeToolTip": "BookManager\\Services\\AI\\OllamaService.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAQwB0AAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-09T01:44:02.744Z",
+              "WhenOpened": "2026-11-09T04:09:20.248Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PromptBiblioteca.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Services\\AI\\PromptBiblioteca.cs",
+              "RelativeDocumentMoniker": "BookManager\\Services\\AI\\PromptBiblioteca.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Services\\AI\\PromptBiblioteca.cs",
+              "RelativeToolTip": "BookManager\\Services\\AI\\PromptBiblioteca.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAowAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-09T04:09:18.434Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ChatFlotante.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\ChatFlotante.xaml.cs",
+              "RelativeDocumentMoniker": "BookManager\\Views\\ChatFlotante.xaml.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\ChatFlotante.xaml.cs",
+              "RelativeToolTip": "BookManager\\Views\\ChatFlotante.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACAAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-09T04:06:44.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ChatFlotante.xaml",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\ChatFlotante.xaml",
+              "RelativeDocumentMoniker": "BookManager\\Views\\ChatFlotante.xaml",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\ChatFlotante.xaml",
+              "RelativeToolTip": "BookManager\\Views\\ChatFlotante.xaml",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-09T04:05:40.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DashboardPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\DashboardPage.xaml.cs",
+              "RelativeDocumentMoniker": "BookManager\\Views\\DashboardPage.xaml.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\DashboardPage.xaml.cs",
+              "RelativeToolTip": "BookManager\\Views\\DashboardPage.xaml.cs",
+              "ViewState": "AgIAABoAAAAAAAAAAAA8wCwAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T23:03:32.837Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\LoginPage.xaml.cs",
+              "RelativeDocumentMoniker": "BookManager\\Views\\LoginPage.xaml.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\LoginPage.xaml.cs",
+              "RelativeToolTip": "BookManager\\Views\\LoginPage.xaml.cs",
+              "ViewState": "AgIAAEoAAAAAAAAAAAAAwCQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T23:03:21.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Lector.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Models\\Lector.cs",
+              "RelativeDocumentMoniker": "BookManager\\Models\\Lector.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Models\\Lector.cs",
+              "RelativeToolTip": "BookManager\\Models\\Lector.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-07T19:57:13.059Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Prestamo.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Models\\Prestamo.cs",
+              "RelativeDocumentMoniker": "BookManager\\Models\\Prestamo.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Models\\Prestamo.cs",
+              "RelativeToolTip": "BookManager\\Models\\Prestamo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-07T20:16:47.082Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Libro.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Models\\Libro.cs",
+              "RelativeDocumentMoniker": "BookManager\\Models\\Libro.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Models\\Libro.cs",
+              "RelativeToolTip": "BookManager\\Models\\Libro.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-07T19:57:14.593Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "prestamos.json",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Data\\prestamos.json",
+              "RelativeDocumentMoniker": "BookManager\\Data\\prestamos.json",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Data\\prestamos.json",
+              "RelativeToolTip": "BookManager\\Data\\prestamos.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-11-07T19:57:24.392Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CatalogoPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\CatalogoPage.xaml.cs",
+              "RelativeDocumentMoniker": "BookManager\\Views\\CatalogoPage.xaml.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\CatalogoPage.xaml.cs",
+              "RelativeToolTip": "BookManager\\Views\\CatalogoPage.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T23:03:38.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "LectoresPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\LectoresPage.xaml.cs",
+              "RelativeDocumentMoniker": "BookManager\\Views\\LectoresPage.xaml.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\LectoresPage.xaml.cs",
+              "RelativeToolTip": "BookManager\\Views\\LectoresPage.xaml.cs",
+              "ViewState": "AgIAALUBAAAAAAAAAAAmwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T23:03:25.911Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "lectores.json",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Data\\lectores.json",
+              "RelativeDocumentMoniker": "BookManager\\Data\\lectores.json",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Data\\lectores.json",
+              "RelativeToolTip": "BookManager\\Data\\lectores.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-11-07T19:57:21.196Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "libros.json",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Data\\libros.json",
+              "RelativeDocumentMoniker": "BookManager\\Data\\libros.json",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Data\\libros.json",
+              "RelativeToolTip": "BookManager\\Data\\libros.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-11-07T19:57:23.613Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PrestamosPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\PrestamosPage.xaml.cs",
+              "RelativeDocumentMoniker": "BookManager\\Views\\PrestamosPage.xaml.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\PrestamosPage.xaml.cs",
+              "RelativeToolTip": "BookManager\\Views\\PrestamosPage.xaml.cs",
+              "ViewState": "AgIAAOkBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T23:03:16.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "PrestamosPage.xaml",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\PrestamosPage.xaml",
+              "RelativeDocumentMoniker": "BookManager\\Views\\PrestamosPage.xaml",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Views\\PrestamosPage.xaml",
+              "RelativeToolTip": "BookManager\\Views\\PrestamosPage.xaml",
+              "ViewState": "AgIAAO0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-08T23:03:08.734Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "app.manifest",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\app.manifest",
+              "RelativeDocumentMoniker": "BookManager\\app.manifest",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\app.manifest",
+              "RelativeToolTip": "BookManager\\app.manifest",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001203|",
+              "WhenOpened": "2026-11-08T23:02:36.187Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\App.xaml.cs",
+              "RelativeDocumentMoniker": "BookManager\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\App.xaml.cs",
+              "RelativeToolTip": "BookManager\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T23:02:25.387Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DeploymentManagerAutoInitializer.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\.nuget\\packages\\microsoft.windowsappsdk.foundation\\2.6.5\\include\\DeploymentManagerAutoInitializer.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\.nuget\\packages\\microsoft.windowsappsdk.foundation\\2.6.5\\include\\DeploymentManagerAutoInitializer.cs",
+              "ToolTip": "C:\\Users\\LunaI\\.nuget\\packages\\microsoft.windowsappsdk.foundation\\2.6.5\\include\\DeploymentManagerAutoInitializer.cs",
+              "RelativeToolTip": "..\\..\\..\\.nuget\\packages\\microsoft.windowsappsdk.foundation\\2.6.5\\include\\DeploymentManagerAutoInitializer.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T23:02:00.533Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "BookManager\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\MainWindow.xaml.cs",
+              "RelativeToolTip": "BookManager\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEEAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T22:57:22.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "BookManager\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\MainWindow.xaml",
+              "RelativeToolTip": "BookManager\\MainWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-08T22:56:31.135Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Package.appxmanifest",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Package.appxmanifest",
+              "RelativeDocumentMoniker": "BookManager\\Package.appxmanifest",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Package.appxmanifest",
+              "RelativeToolTip": "BookManager\\Package.appxmanifest",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001793|",
+              "WhenOpened": "2026-11-08T22:56:26.36Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "WindowsAppSDK-VersionInfo.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\.nuget\\packages\\microsoft.windowsappsdk.runtime\\2.6.5\\include\\WindowsAppSDK-VersionInfo.cs",
+              "RelativeDocumentMoniker": "..\\..\\..\\.nuget\\packages\\microsoft.windowsappsdk.runtime\\2.6.5\\include\\WindowsAppSDK-VersionInfo.cs",
+              "ToolTip": "C:\\Users\\LunaI\\.nuget\\packages\\microsoft.windowsappsdk.runtime\\2.6.5\\include\\WindowsAppSDK-VersionInfo.cs",
+              "RelativeToolTip": "..\\..\\..\\.nuget\\packages\\microsoft.windowsappsdk.runtime\\2.6.5\\include\\WindowsAppSDK-VersionInfo.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-08T22:56:17.443Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\App.xaml",
+              "RelativeDocumentMoniker": "BookManager\\App.xaml",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\App.xaml",
+              "RelativeToolTip": "BookManager\\App.xaml",
+              "ViewState": "AgIAAHsAAAAAAAAAAAAAAA0AAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2026-11-08T22:54:43.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "JsonService.cs",
+              "DocumentMoniker": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Services\\JsonService.cs",
+              "RelativeDocumentMoniker": "BookManager\\Services\\JsonService.cs",
+              "ToolTip": "C:\\Users\\LunaI\\source\\repos\\BookManager\\BookManager\\Services\\JsonService.cs",
+              "RelativeToolTip": "BookManager\\Services\\JsonService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF0AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-07T19:57:05.238Z"
             }
           ]
         }

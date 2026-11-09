@@ -28,7 +28,7 @@
     <AppXManifest Include="C:\Users\LunaI\source\repos\BookManager\BookManager\bin\x64\Debug\net8.0-windows10.0.19041.0\win-x64\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2026-11-09T03:57:33.483</Modified>
+      <Modified>2026-11-09T04:03:28.666</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
@@ -38,11 +38,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\LunaI\source\repos\BookManager\BookManager\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\apphost.exe">
       <PackagePath>BookManager.exe</PackagePath>
-      <Modified>2026-11-09T03:57:32.945</Modified>
+      <Modified>2026-11-09T04:03:28.469</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\LunaI\source\repos\BookManager\BookManager\obj\x64\Debug\net8.0-windows10.0.19041.0\win-x64\BookManager.dll">
       <PackagePath>BookManager.dll</PackagePath>
-      <Modified>2026-11-09T03:57:32.926</Modified>
+      <Modified>2026-11-09T04:03:28.462</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\LunaI\.nuget\packages\microsoft.netcore.app.runtime.win-x64\8.0.32\runtimes\win-x64\lib\net8.0\Microsoft.CSharp.dll">
       <PackagePath>Microsoft.CSharp.dll</PackagePath>
