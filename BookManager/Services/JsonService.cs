@@ -10,8 +10,6 @@ namespace BookManager.Services
     {
         private readonly JsonSerializerOptions _opcionesLectura;
         private readonly JsonSerializerOptions _opcionesEscritura;
-
-        // Ruta resuelta dinámicamente hacia la carpeta Data dentro del proyecto BookManager
         private readonly string _carpetaData;
 
         public JsonService()
@@ -29,7 +27,6 @@ namespace BookManager.Services
             _carpetaData = ResolverRutaCarpetaData();
         }
 
-        // Resuelve dinámicamente la carpeta Data buscando la raíz del proyecto (donde reside BookManager.csproj)
         public static string ResolverRutaCarpetaData()
         {
             string[] puntosDePartida = {
@@ -47,7 +44,6 @@ namespace BookManager.Services
                     string archivoCsproj = Path.Combine(dirActual, "BookManager.csproj");
                     if (File.Exists(archivoCsproj))
                     {
-                        // Se identificó el directorio raíz del proyecto BookManager
                         string rutaData = Path.Combine(dirActual, "Data");
                         if (!Directory.Exists(rutaData))
                         {
@@ -69,7 +65,6 @@ namespace BookManager.Services
                 "Verifique que el proyecto se ejecute dentro de su estructura de carpetas.");
         }
 
-        // Expone la ruta absoluta resuelta para comprobaciones e inspección
         public string ObtenerRutaCarpetaData()
         {
             if (!Directory.Exists(_carpetaData))
@@ -80,7 +75,6 @@ namespace BookManager.Services
             return _carpetaData;
         }
 
-        // Construye la ruta absoluta para un archivo JSON dentro de la carpeta Data resuelta
         private string ObtenerRutaCompleta(string nombreArchivo)
         {
             if (string.IsNullOrWhiteSpace(nombreArchivo))
@@ -91,12 +85,10 @@ namespace BookManager.Services
             return Path.Combine(ObtenerRutaCarpetaData(), nombreArchivo);
         }
 
-        // Lee una lista de objetos del archivo JSON indicado
         public async Task<List<T>> LeerListaAsync<T>(string nombreArchivo)
         {
             string rutaArchivo = ObtenerRutaCompleta(nombreArchivo);
 
-            // Si el archivo no existe, lo crea inicializado con []
             if (!File.Exists(rutaArchivo))
             {
                 await File.WriteAllTextAsync(rutaArchivo, "[]");
@@ -125,12 +117,10 @@ namespace BookManager.Services
             }
             catch (JsonException ex)
             {
-                // No ocultamos el error ni reemplazamos información dañada con una lista vacía
                 throw new InvalidOperationException($"El archivo '{nombreArchivo}' contiene un formato JSON inválido o dañado.", ex);
             }
         }
 
-        // Guarda la lista de objetos serializada en formato JSON indentado
         public async Task GuardarListaAsync<T>(string nombreArchivo, List<T> datos)
         {
             if (datos == null)

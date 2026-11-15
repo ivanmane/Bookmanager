@@ -21,9 +21,7 @@ namespace BookManager.Views
         private List<Lector> _lectores = new();
         private List<Prestamo> _prestamos = new();
 
-        // Esta variable sirve para saber si estamos editando la info de algun lector
         private int? _lectorEnEdicionId = null;
-
         private bool _estaCargado = false;
 
         public LectoresPage()
@@ -39,7 +37,6 @@ namespace BookManager.Views
             await CargarDatosAsync();
         }
 
-        // Carga de todos los archivos
         private async Task CargarDatosAsync()
         {
             try
@@ -48,7 +45,6 @@ namespace BookManager.Views
                 _lectores = await _jsonService.LeerListaAsync<Lector>("lectores.json");
                 _prestamos = await _jsonService.LeerListaAsync<Prestamo>("prestamos.json");
 
-                // Compatibilidad hacia atrás: asegurar que registros antiguos sin Telefono tengan cadena vacía
                 foreach (var lector in _lectores)
                 {
                     lector.Telefono ??= string.Empty;
@@ -64,7 +60,6 @@ namespace BookManager.Views
             }
         }
 
-        // Crear copia de lectores para casos de fallos, este es el molde que se usa
         private List<Lector> ClonarLectores(List<Lector> origen)
         {
             return origen.Select(l => new Lector
@@ -77,7 +72,6 @@ namespace BookManager.Views
             }).ToList();
         }
 
-        // Logica de el cuadro de busqueda
         private void AplicarBusqueda()
         {
             if (!_estaCargado || ListaLectores == null)
@@ -88,8 +82,6 @@ namespace BookManager.Views
             string busqueda = TxtBuscar?.Text?.Trim() ?? string.Empty;
 
             IEnumerable<Lector> consulta = _lectores;
-            
-            //busqueda por nombre, matricula, correo o telefono, el telefono tenemos que convertirlo en string
 
             if (!string.IsNullOrWhiteSpace(busqueda))
             {
@@ -130,9 +122,6 @@ namespace BookManager.Views
             AplicarBusqueda();
         }
 
-        // Aqui estan todas las validaciones y restricciones de la pantalla
-
-        // Evita que el usuario comience con espacios desde el teclado
         private void BloquearEspacioInicial_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Space)
@@ -173,8 +162,6 @@ namespace BookManager.Views
             BtnEditar.IsEnabled = haySeleccion;
             BtnEliminar.IsEnabled = haySeleccion;
         }
-
-        // Logica para agregar y tmb para editar los lectores
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
@@ -306,7 +293,6 @@ namespace BookManager.Views
 
                 if (_lectorEnEdicionId == null)
                 {
-                    // Operacion agregar
                     int nuevoId = listaTemporal.Count > 0 ? listaTemporal.Max(l => l.Id) + 1 : 1;
 
                     var nuevoLector = new Lector
@@ -338,12 +324,10 @@ namespace BookManager.Views
                     mensajeExito = $"Lector \"{nombre}\" (ID: {lectorEnTemporal.Id}) actualizado exitosamente.";
                 }
 
-                // Guardar en el lectores json
                 await _jsonService.GuardarListaAsync("lectores.json", listaTemporal);
 
                 _lectores = listaTemporal;
 
-                // Ocultamos formulario, mostramos el mensaje de excito y aplicamos busqueda en blanco para actualizar la lista
                 PanelFormulario.Visibility = Visibility.Collapsed;
                 LimpiarFormulario();
                 MostrarMensaje(mensajeExito, true);
@@ -360,8 +344,6 @@ namespace BookManager.Views
             TxtErrorFormulario.Text = mensaje;
             TxtErrorFormulario.Visibility = Visibility.Visible;
         }
-
-        // Logica para eliminar lectores
 
         private async void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
@@ -409,8 +391,6 @@ namespace BookManager.Views
                 }
             }
         }
-
-        // Regresar a la pantalla dashboard y mostrar mensaje de excito
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {

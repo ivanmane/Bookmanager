@@ -14,7 +14,6 @@ using BookManager.Services;
 
 namespace BookManager.Views
 {
-    // Aqui creamos una lista para darle formato a la lista que se mostrara.
     public class LibroItemVista
     {
         public int Id { get; set; }
@@ -37,11 +36,7 @@ namespace BookManager.Views
         private List<LibroItemVista> _librosVista = new();
 
         private int? _libroEnEdicionId = null;
-
-        // Aqui cargamos el filtro que se selecciono en dashboard. Por defeto lo seleccionamos como todos
         private string _filtroInicial = "Todos";
-
-        // Candando para que no cargue el front
         private bool _estaCargado = false;
 
         public CatalogoPage()
@@ -51,7 +46,6 @@ namespace BookManager.Views
             this.Loaded += CatalogoPage_Loaded;
         }
 
-        // Cargamos el filtro que se selecciono o por defecto todos
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
@@ -64,7 +58,6 @@ namespace BookManager.Views
         private async void CatalogoPage_Loaded(object sender, RoutedEventArgs e)
         {
             _estaCargado = true;
-            // Seleccionar el ComboBox según el parámetro recibido del Dashboard
             SeleccionarFiltroInicial();
             await CargarDatosAsync();
         }
@@ -96,7 +89,6 @@ namespace BookManager.Views
                 _libros = await _jsonService.LeerListaAsync<Libro>("libros.json");
                 _prestamos = await _jsonService.LeerListaAsync<Prestamo>("prestamos.json");
 
-                // Seguridad que no hayan ejemplares negativos 
                 var libroInvalido = _libros.FirstOrDefault(l => l.CantidadEjemplares <= 0);
                 if (libroInvalido != null)
                 {
@@ -114,7 +106,6 @@ namespace BookManager.Views
             }
         }
 
-        // Aqui se contruye toda la vista de la lista con los libros
         private void ConstruirListaVista()
         {
             DateTime hoy = DateTime.Today;
@@ -161,7 +152,6 @@ namespace BookManager.Views
             }).ToList();
         }
 
-        // Busquedas por filtro
         private void AplicarBusquedaYFiltros()
         {
             if (!_estaCargado || ListaLibros == null)
@@ -226,8 +216,6 @@ namespace BookManager.Views
             AplicarBusquedaYFiltros();
         }
 
-
-        // Filtro para evitar que se puedan poner espacios cuando el box esta vacia
         private void BloquearEspacioInicial_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Space)
@@ -239,7 +227,6 @@ namespace BookManager.Views
             }
         }
 
-        // Elimina los espacios iniciales en dado caso pero se pueden conservar los espacios dentro de la cadena de texto
         private void BloquearEspacioInicial_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (sender is TextBox tb && tb.Text.StartsWith(' '))
@@ -253,7 +240,6 @@ namespace BookManager.Views
             }
         }
 
-        // Se restringe que puedan escribir cualquier cosa que no sean numeros
         private void TxtAnio_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Back ||
@@ -335,6 +321,11 @@ namespace BookManager.Views
 
             string soloDigitos = new string(tb.Text.Where(c => c >= '0' && c <= '9').ToArray());
 
+            if (soloDigitos.Length > 4)
+            {
+                soloDigitos = soloDigitos.Substring(0, 4);
+            }
+
             if (tb.Text != soloDigitos)
             {
                 int cursor = tb.SelectionStart;
@@ -365,7 +356,6 @@ namespace BookManager.Views
             BtnEditar.IsEnabled = haySeleccion;
             BtnEliminar.IsEnabled = haySeleccion;
         }
-        // Seccion para agregar libros y tambien para editarlos
 
         private void BtnAgregar_Click(object sender, RoutedEventArgs e)
         {
@@ -425,7 +415,6 @@ namespace BookManager.Views
             string anioTexto = TxtAnio.Text.Trim();
             string ejemplaresTexto = TxtEjemplares.Text.Trim();
 
-            // Validaciones para que los campos no esten vacios
             if (string.IsNullOrWhiteSpace(titulo))
             {
                 MostrarErrorFormulario("El título es obligatorio.");
@@ -450,8 +439,6 @@ namespace BookManager.Views
                 return;
             }
 
-            // Aqui validamos que el ISBN no se repita
-            // El ISBN es un indicador unico que tienen los libros a nivel mundial
             if (!string.IsNullOrWhiteSpace(isbn))
             {
                 int idActual = _libroEnEdicionId ?? 0;
@@ -467,7 +454,6 @@ namespace BookManager.Views
                 }
             }
 
-            // Bloqueo para evitar que no se puedan reducir la cantidad de libros cuando hay prestamos activos
             if (_libroEnEdicionId != null)
             {
                 int prestamosActivos = _prestamos.Count(p => p.LibroId == _libroEnEdicionId.Value && p.FechaDevolucion == null);
@@ -533,7 +519,6 @@ namespace BookManager.Views
             }
             catch (Exception ex)
             {
-                // Si algo llega a fallar no se guardan los cambios por la clonacion del inicio
                 MostrarErrorFormulario($"Error al guardar en el archivo JSON: {ex.Message}. Los cambios no se aplicaron.");
             }
         }
@@ -544,8 +529,6 @@ namespace BookManager.Views
             TxtErrorFormulario.Visibility = Visibility.Visible;
         }
 
-        // Aqui esta toda la logica de cuando se elimina un libro
-
         private async void BtnEliminar_Click(object sender, RoutedEventArgs e)
         {
             if (ListaLibros.SelectedItem is not LibroItemVista itemSeleccionado)
@@ -553,7 +536,6 @@ namespace BookManager.Views
                 return;
             }
 
-            // Primero comprobamos que no tengamos ningun libro asociado a un prestamo para evitar negativos
             bool tieneHistorialPrestamos = _prestamos.Any(p => p.LibroId == itemSeleccionado.Id);
             if (tieneHistorialPrestamos)
             {
@@ -561,7 +543,6 @@ namespace BookManager.Views
                 return;
             }
 
-            // Confirmamos eliminacion en el dado caso de que el libro no tenga prestamo activo 
             var dialogo = new ContentDialog
             {
                 Title = "Confirmar eliminación",
@@ -595,8 +576,6 @@ namespace BookManager.Views
                 }
             }
         }
-
-        // Logica para volver a la pantalla de dashboard
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {

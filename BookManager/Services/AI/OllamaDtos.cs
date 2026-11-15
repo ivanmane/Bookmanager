@@ -3,7 +3,6 @@ using System.Text.Json.Serialization;
 
 namespace BookManager.Services.AI
 {
-    /// <summary>Mensaje de la conversación (role: system | user | assistant).</summary>
     public class OllamaMessage
     {
         [JsonPropertyName("role")]
@@ -12,7 +11,6 @@ namespace BookManager.Services.AI
         [JsonPropertyName("content")]
         public string Content { get; set; } = string.Empty;
 
-        // Solo llega en respuestas cuando el modelo razona; se ignora al mostrar.
         [JsonPropertyName("thinking")]
         public string? Thinking { get; set; }
 
@@ -25,7 +23,6 @@ namespace BookManager.Services.AI
         }
     }
 
-    /// <summary>Opciones del modelo enviadas en la petición.</summary>
     public class OllamaModelOptions
     {
         [JsonPropertyName("temperature")]
@@ -44,7 +41,6 @@ namespace BookManager.Services.AI
         public int NumPredict { get; set; }
     }
 
-    /// <summary>Petición para POST /api/chat.</summary>
     public class OllamaChatRequest
     {
         [JsonPropertyName("model")]
@@ -66,7 +62,6 @@ namespace BookManager.Services.AI
         public OllamaModelOptions? Options { get; set; }
     }
 
-    /// <summary>Respuesta de POST /api/chat (con stream = false).</summary>
     public class OllamaChatResponse
     {
         [JsonPropertyName("model")]
@@ -82,7 +77,6 @@ namespace BookManager.Services.AI
         public string? DoneReason { get; set; }
     }
 
-    /// <summary>Respuesta de GET /api/tags (modelos instalados).</summary>
     public class OllamaTagsResponse
     {
         [JsonPropertyName("models")]
@@ -98,15 +92,12 @@ namespace BookManager.Services.AI
         public string? Model { get; set; }
     }
 
-    /// <summary>Cuerpo de error de Ollama: {"error": "..."}.</summary>
     public class OllamaErrorResponse
     {
         [JsonPropertyName("error")]
         public string? Error { get; set; }
     }
 
-    // Serialización generada en tiempo de compilación: segura con PublishTrimmed (Release)
-    // y sin reflexión. No requiere paquetes NuGet adicionales.
     [JsonSourceGenerationOptions(DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull)]
     [JsonSerializable(typeof(OllamaChatRequest))]
     [JsonSerializable(typeof(OllamaChatResponse))]

@@ -16,13 +16,11 @@
                 CornerRadius="10"
                 Padding="36,40">
             <StackPanel Spacing="20">
-                <!-- Logotipo de BookManager -->
                 <Image Source="ms-appx:///Assets/BookManager.png"
                        Width="84"
                        Height="84"
                        HorizontalAlignment="Center" />
 
-                <!-- Título y subtítulo -->
                 <StackPanel Spacing="4" HorizontalAlignment="Center">
                     <TextBlock Text="BookManager"
                                FontSize="26"
@@ -35,7 +33,6 @@
                                HorizontalAlignment="Center" />
                 </StackPanel>
 
-                <!-- Campo de usuario -->
                 <StackPanel Spacing="6">
                     <TextBlock Text="Usuario"
                                FontWeight="SemiBold"
@@ -43,6 +40,7 @@
                                Foreground="{StaticResource BrushTextoPrincipal}" />
                     <TextBox x:ConnectionId='5' x:Name="TxtUsuario"
                              PlaceholderText="Ingrese su usuario"
+                             MaxLength="30"
                              Background="{StaticResource BrushSuperficie}"
                              Foreground="{StaticResource BrushTextoPrincipal}"
                              PlaceholderForeground="{StaticResource BrushTextoSecundario}"
@@ -53,7 +51,6 @@
                                                                               />
                 </StackPanel>
 
-                <!-- Campo de contraseña con caracteres ocultos -->
                 <StackPanel Spacing="6">
                     <TextBlock Text="Contraseña"
                                FontWeight="SemiBold"
@@ -61,6 +58,7 @@
                                Foreground="{StaticResource BrushTextoPrincipal}" />
                     <PasswordBox x:ConnectionId='4' x:Name="TxtPassword"
                                  PlaceholderText="Ingrese su contraseña"
+                                 MaxLength="30"
                                  Background="{StaticResource BrushSuperficie}"
                                  Foreground="{StaticResource BrushTextoPrincipal}"
                                  BorderBrush="{StaticResource BrushBorde}"
@@ -70,7 +68,6 @@
                                                                             />
                 </StackPanel>
 
-                <!-- Botón para iniciar sesión -->
                 <Button x:ConnectionId='2' x:Name="BtnIngresar"
                         Content="Ingresar al sistema"
                         Style="{StaticResource BotonPrimarioStyle}"
@@ -79,7 +76,6 @@
                         Margin="0,8,0,0"
                                                   />
 
-                <!-- Mensaje de estado para indicar error o acceso exitoso -->
                 <TextBlock x:ConnectionId='3' x:Name="TxtMensaje"
                            TextWrapping="Wrap"
                            HorizontalAlignment="Center"

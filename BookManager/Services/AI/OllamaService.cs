@@ -21,10 +21,6 @@ namespace BookManager.Services.AI
         ErrorRespuesta
     }
 
-    /// <summary>
-    /// Resultado de una operación contra Ollama. El servicio no lanza excepciones hacia la UI:
-    /// siempre devuelve un estado y un mensaje listo para mostrar al usuario.
-    /// </summary>
     public sealed class OllamaResultado
     {
         public OllamaEstado Estado { get; }
@@ -46,14 +42,8 @@ namespace BookManager.Services.AI
             new(estado, string.Empty, mensajeUsuario);
     }
 
-    /// <summary>
-    /// Única responsabilidad: hablar con el servidor Ollama local (http://localhost:11434).
-    /// </summary>
     public sealed class OllamaService
     {
-        // Un solo HttpClient para toda la aplicación (no se crea uno por mensaje).
-        // - Timeout infinito: cada petición controla su propio tiempo con CancellationToken.
-        // - UseProxy = false: el tráfico a localhost nunca debe pasar por un proxy del sistema.
         private static readonly HttpClient _http = new(new SocketsHttpHandler
         {
             UseProxy = false,
@@ -82,7 +72,6 @@ namespace BookManager.Services.AI
             }
             else if (!uri.IsLoopback)
             {
-                // Seguridad: la IA debe ser estrictamente local.
                 _errorConfiguracion = "Por seguridad, el asistente solo puede conectarse a Ollama en este mismo equipo (localhost).";
             }
             else
@@ -91,9 +80,6 @@ namespace BookManager.Services.AI
             }
         }
 
-        // ------------------------------------------------------------------
-        // 1 y 2. Disponibilidad del servidor y del modelo (GET /api/tags)
-        // ------------------------------------------------------------------
         public async Task<OllamaResultado> VerificarAsync(CancellationToken cancelacion = default)
         {
             if (_baseUri == null)
@@ -129,7 +115,6 @@ namespace BookManager.Services.AI
             }
             catch (OperationCanceledException)
             {
-                // Sin respuesta en el tiempo de verificación: se trata como servidor no disponible
                 return OllamaResultado.Falla(OllamaEstado.ServidorNoDisponible, MensajeServidorNoDisponible());
             }
             catch (HttpRequestException)
@@ -142,9 +127,6 @@ namespace BookManager.Services.AI
             }
         }
 
-        // ------------------------------------------------------------------
-        // 3, 4, 5, 6 y 7. Envío de mensajes (POST /api/chat, stream = false)
-        // ------------------------------------------------------------------
         public async Task<OllamaResultado> EnviarAsync(IEnumerable<OllamaMessage> mensajes, CancellationToken cancelacion = default)
         {
             if (_baseUri == null)
@@ -187,7 +169,6 @@ namespace BookManager.Services.AI
 
                 OllamaChatResponse? datos = JsonSerializer.Deserialize(json, OllamaJsonContext.Default.OllamaChatResponse);
 
-                // Solo se usa message.content; nunca se muestra el JSON completo.
                 string texto = LimpiarRazonamiento(datos?.Message?.Content);
 
                 if (string.IsNullOrWhiteSpace(texto))
@@ -196,7 +177,6 @@ namespace BookManager.Services.AI
                         "El modelo no devolvió texto. Intenta reformular la pregunta.");
                 }
 
-                // La respuesta se cortó por el límite de tokens (num_predict)
                 if (string.Equals(datos?.DoneReason, "length", StringComparison.OrdinalIgnoreCase))
                 {
                     texto += " […]";
@@ -223,9 +203,6 @@ namespace BookManager.Services.AI
             }
         }
 
-        // ------------------------------------------------------------------
-        // Utilidades internas
-        // ------------------------------------------------------------------
         private OllamaResultado InterpretarError(HttpStatusCode codigo, string json)
         {
             string? detalle = null;
@@ -235,10 +212,8 @@ namespace BookManager.Services.AI
             }
             catch (JsonException)
             {
-                // El cuerpo no era JSON de error; se usa el mensaje genérico.
             }
 
-            // Ollama responde 404 cuando el modelo no está instalado.
             if (codigo == HttpStatusCode.NotFound)
             {
                 return OllamaResultado.Falla(OllamaEstado.ModeloNoInstalado, MensajeModeloNoInstalado());
@@ -259,7 +234,6 @@ namespace BookManager.Services.AI
             return string.Equals(nombre, esperado, StringComparison.OrdinalIgnoreCase);
         }
 
-        // Por si algún modelo devuelve su razonamiento dentro del contenido (<think>...</think>)
         private static string LimpiarRazonamiento(string? contenido)
         {
             if (string.IsNullOrEmpty(contenido)) return string.Empty;

@@ -18,7 +18,6 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <!-- 1. Encabezado y botón volver -->
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -44,7 +43,6 @@
                                                 />
             </Grid>
 
-            <!-- 2. Barra de búsqueda, filtro y acciones -->
             <Grid Grid.Row="1" ColumnSpacing="12" RowSpacing="12">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="2*" />
@@ -52,10 +50,10 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Campo de búsqueda -->
                 <TextBox x:ConnectionId='16' Grid.Column="0"
                          x:Name="TxtBuscar"
                          PlaceholderText="Buscar por título, autor o ISBN..."
+                         MaxLength="100"
                          Background="{StaticResource BrushSuperficie}"
                          Foreground="{StaticResource BrushTextoPrincipal}"
                          PlaceholderForeground="{StaticResource BrushTextoSecundario}"
@@ -65,7 +63,6 @@
                                                                                
                                                              />
 
-                <!-- Selector de filtro por disponibilidad -->
                 <ComboBox x:ConnectionId='17' Grid.Column="1"
                           x:Name="CmbFiltro"
                           HorizontalAlignment="Stretch"
@@ -81,7 +78,6 @@
                     <ComboBoxItem Content="Vencidos" Foreground="{StaticResource BrushTextoPrincipal}" />
                 </ComboBox>
 
-                <!-- Botones de acción principales -->
                 <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="8">
                     <Button x:ConnectionId='18' x:Name="BtnAgregar"
                             Content="+ Agregar libro"
@@ -100,7 +96,6 @@
                 </StackPanel>
             </Grid>
 
-            <!-- 3. Mensaje de estado (éxito o error) -->
             <TextBlock x:ConnectionId='2' Grid.Row="2"
                        x:Name="TxtMensajeEstado"
                        TextWrapping="Wrap"
@@ -108,7 +103,6 @@
                        FontSize="13"
                        Visibility="Collapsed" />
 
-            <!-- 4. Formulario desplegable para Agregar / Editar -->
             <Border x:ConnectionId='3' Grid.Row="3"
                     x:Name="PanelFormulario"
                     Visibility="Collapsed"
@@ -125,11 +119,11 @@
                                Foreground="{StaticResource BrushAzulMarino}" />
 
                     <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="16" RowSpacing="12">
-                        <!-- Título -->
                         <StackPanel Grid.Row="0" Grid.Column="0" Spacing="4">
                             <TextBlock Text="Título (* obligatorio):" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource BrushTextoPrincipal}" />
                             <TextBox x:ConnectionId='15' x:Name="TxtTitulo"
                                      PlaceholderText="Título de la obra"
+                                     MaxLength="100"
                                      Background="{StaticResource BrushSuperficie}"
                                      Foreground="{StaticResource BrushTextoPrincipal}"
                                      PlaceholderForeground="{StaticResource BrushTextoSecundario}"
@@ -140,11 +134,11 @@
                                                                                       />
                         </StackPanel>
 
-                        <!-- Autor -->
                         <StackPanel Grid.Row="0" Grid.Column="1" Spacing="4">
                             <TextBlock Text="Autor (* obligatorio):" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource BrushTextoPrincipal}" />
                             <TextBox x:ConnectionId='14' x:Name="TxtAutor"
                                      PlaceholderText="Nombre del autor"
+                                     MaxLength="100"
                                      Background="{StaticResource BrushSuperficie}"
                                      Foreground="{StaticResource BrushTextoPrincipal}"
                                      PlaceholderForeground="{StaticResource BrushTextoSecundario}"
@@ -155,11 +149,11 @@
                                                                                       />
                         </StackPanel>
 
-                        <!-- ISBN -->
                         <StackPanel Grid.Row="1" Grid.Column="0" Spacing="4">
                             <TextBlock Text="ISBN (opcional):" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource BrushTextoPrincipal}" />
                             <TextBox x:ConnectionId='13' x:Name="TxtISBN"
                                      PlaceholderText="Ej: 978-0307474728"
+                                     MaxLength="20"
                                      Background="{StaticResource BrushSuperficie}"
                                      Foreground="{StaticResource BrushTextoPrincipal}"
                                      PlaceholderForeground="{StaticResource BrushTextoSecundario}"
@@ -170,11 +164,11 @@
                                                                                       />
                         </StackPanel>
 
-                        <!-- Género -->
                         <StackPanel Grid.Row="1" Grid.Column="1" Spacing="4">
                             <TextBlock Text="Género (opcional):" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource BrushTextoPrincipal}" />
                             <TextBox x:ConnectionId='12' x:Name="TxtGenero"
                                      PlaceholderText="Ej: Novela, Ensayo"
+                                     MaxLength="50"
                                      Background="{StaticResource BrushSuperficie}"
                                      Foreground="{StaticResource BrushTextoPrincipal}"
                                      PlaceholderForeground="{StaticResource BrushTextoSecundario}"
@@ -185,7 +179,6 @@
                                                                                       />
                         </StackPanel>
 
-                        <!-- Año de publicación -->
                         <StackPanel Grid.Row="2" Grid.Column="0" Spacing="4">
                             <TextBlock Text="Año de publicación (* obligatorio, 0-9):" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource BrushTextoPrincipal}" />
                             <TextBox x:ConnectionId='11' x:Name="TxtAnio"
@@ -202,11 +195,11 @@
                                                                        />
                         </StackPanel>
 
-                        <!-- Cantidad de ejemplares físicos -->
                         <StackPanel Grid.Row="2" Grid.Column="1" Spacing="4">
                             <TextBlock Text="Cantidad de ejemplares (* obligatorio):" FontSize="12" FontWeight="SemiBold" Foreground="{StaticResource BrushTextoPrincipal}" />
                             <TextBox x:ConnectionId='10' x:Name="TxtEjemplares"
                                      PlaceholderText="Ej: 1"
+                                     MaxLength="4"
                                      InputScope="Number"
                                      Background="{StaticResource BrushSuperficie}"
                                      Foreground="{StaticResource BrushTextoPrincipal}"
@@ -219,7 +212,6 @@
                         </StackPanel>
                     </Grid>
 
-                    <!-- Mensaje de error de validación dentro del formulario -->
                     <TextBlock x:ConnectionId='7' x:Name="TxtErrorFormulario"
                                Foreground="{StaticResource BrushError}"
                                FontWeight="SemiBold"
@@ -227,7 +219,6 @@
                                Visibility="Collapsed"
                                TextWrapping="Wrap" />
 
-                    <!-- Botones del formulario -->
                     <StackPanel Orientation="Horizontal" Spacing="12" HorizontalAlignment="Right">
                         <Button x:ConnectionId='8' x:Name="BtnCancelarFormulario"
                                 Content="Cancelar"
@@ -241,9 +232,7 @@
                 </StackPanel>
             </Border>
 
-            <!-- 5. Tabla de libros (Elemento principal) -->
             <StackPanel Grid.Row="4" Spacing="0">
-                <!-- Encabezado de columnas -->
                 <Border Background="#F8FAFC"
                         BorderBrush="{StaticResource BrushBorde}"
                         BorderThickness="1,1,1,0"
@@ -275,7 +264,6 @@
                     </Grid>
                 </Border>
 
-                <!-- Filas de datos -->
                 <ListView x:ConnectionId='4' x:Name="ListaLibros"
                           SelectionMode="Single"
                                                                          

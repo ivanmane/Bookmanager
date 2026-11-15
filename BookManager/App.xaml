@@ -11,7 +11,6 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>
 
-            <!-- Paleta institucional BookManager -->
             <Color x:Key="ColorAzulMarino">#163B70</Color>
             <Color x:Key="ColorAzulSecundario">#245A96</Color>
             <Color x:Key="ColorTurquesaAcento">#14B8A6</Color>
@@ -24,7 +23,6 @@
             <Color x:Key="ColorAdvertencia">#B45309</Color>
             <Color x:Key="ColorError">#B91C1C</Color>
 
-            <!-- Pinceles (Brushes) para uso en XAML -->
             <SolidColorBrush x:Key="BrushAzulMarino" Color="{StaticResource ColorAzulMarino}" />
             <SolidColorBrush x:Key="BrushAzulSecundario" Color="{StaticResource ColorAzulSecundario}" />
             <SolidColorBrush x:Key="BrushTurquesaAcento" Color="{StaticResource ColorTurquesaAcento}" />
@@ -37,7 +35,6 @@
             <SolidColorBrush x:Key="BrushAdvertencia" Color="{StaticResource ColorAdvertencia}" />
             <SolidColorBrush x:Key="BrushError" Color="{StaticResource ColorError}" />
 
-            <!-- Pinceles de estado para badges de préstamos -->
             <SolidColorBrush x:Key="BadgeFondoDevuelto" Color="#EEF2FF" />
             <SolidColorBrush x:Key="BadgeTextoDevuelto" Color="#245A96" />
             <SolidColorBrush x:Key="BadgeFondoPendiente" Color="#ECFDF5" />
@@ -47,10 +44,8 @@
             <SolidColorBrush x:Key="BadgeFondoVencido" Color="#FEE2E2" />
             <SolidColorBrush x:Key="BadgeTextoVencido" Color="#B91C1C" />
 
-            <!-- Tipografía predeterminada -->
             <FontFamily x:Key="FuenteApp">Segoe UI</FontFamily>
 
-            <!-- Sobrescritura de recursos de sistema WinUI para forzar contraste en tema claro -->
             <SolidColorBrush x:Key="TextControlBackground" Color="#FFFFFF" />
             <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="#FFFFFF" />
             <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="#FFFFFF" />
@@ -96,7 +91,6 @@
             <SolidColorBrush x:Key="DatePickerButtonForegroundFocused" Color="#1F2937" />
             <SolidColorBrush x:Key="DatePickerButtonBorderBrush" Color="#CBD5E1" />
 
-            <!-- Estilos de botones unificados -->
             <Style x:Key="BotonPrimarioStyle" TargetType="Button">
                 <Setter Property="Background" Value="{StaticResource BrushAzulMarino}" />
                 <Setter Property="Foreground" Value="White" />

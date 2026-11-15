@@ -15,9 +15,6 @@ using BookManager.Services;
 
 namespace BookManager.Views
 {
-    /// <summary>
-    /// Estos elemento sirven para mostrar las opciones en los combobox 
-    /// </summary>
     public class LectorComboItem
     {
         public int Id { get; set; }
@@ -81,7 +78,7 @@ namespace BookManager.Views
             _estaCargado = true;
             if (CmbFiltro != null && CmbFiltro.SelectedIndex < 0)
             {
-                CmbFiltro.SelectedIndex = 0; // "Todos"
+                CmbFiltro.SelectedIndex = 0;
             }
             await CargarDatosAsync();
         }
@@ -285,8 +282,6 @@ namespace BookManager.Views
             AplicarFiltros();
         }
 
-        // Logica para registrar nuevos prestamos
-
         private async void BtnRegistrarPrestamo_Click(object sender, RoutedEventArgs e)
         {
             OcultarErrorFormulario();
@@ -376,8 +371,6 @@ namespace BookManager.Views
             }
         }
 
-        // Logica para registrar devolucion
-
         private async void BtnDevolver_Click(object sender, RoutedEventArgs e)
         {
             OcultarMensaje();
@@ -428,8 +421,6 @@ namespace BookManager.Views
             }
         }
 
-        // Mensaje y regreso al dashboard con el navigate
-
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(DashboardPage));
@@ -457,8 +448,6 @@ namespace BookManager.Views
         {
             TxtErrorFormulario.Visibility = Visibility.Collapsed;
         }
-
-        // Restricciones para evitar que se pongan espacios, caracteres especiales etc.
 
         private void BloquearEspacioInicial_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {

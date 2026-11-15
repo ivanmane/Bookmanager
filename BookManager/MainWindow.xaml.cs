@@ -18,15 +18,10 @@ namespace BookManager
             ConfigurarBarraDeTitulo();
             ConfigurarIconoVentana();
 
-            // El asistente flotante se muestra/oculta segun la pagina a la que se navega.
-            // Se suscribe ANTES de la primera navegacion para que LoginPage lo deje oculto.
             RootFrame.Navigated += RootFrame_Navigated;
-
-            // Aqui le decimos a la app que LoginPage es el rootframe, asi al abrir el proyecto inciara aca.
             RootFrame.Navigate(typeof(LoginPage));
         }
 
-        // Chat flotante: oculto en LoginPage (y con la conversacion borrada), visible en el resto.
         private void RootFrame_Navigated(object sender, NavigationEventArgs e)
         {
             if (e.SourcePageType == typeof(LoginPage))
@@ -59,7 +54,6 @@ namespace BookManager
                 titleBar.InactiveBackgroundColor = inactivoFondo;
                 titleBar.InactiveForegroundColor = inactivoTexto;
 
-                // Estos son los colores de los de la esquina supeior derecha. Background es el color por defecto como un fill y hover es el colo que se pone al pasar el mouse por encima.
                 titleBar.ButtonBackgroundColor = azulMarino;
                 titleBar.ButtonForegroundColor = blanco;
                 titleBar.ButtonHoverBackgroundColor = azulSecundario;
@@ -82,7 +76,6 @@ namespace BookManager
             }
             catch
             {
-                // Si no lo encuentra o soporta pone el pordefecto
             }
         }
     }

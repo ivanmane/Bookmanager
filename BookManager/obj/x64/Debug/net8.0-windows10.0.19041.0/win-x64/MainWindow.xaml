@@ -11,11 +11,8 @@
     Title="BookManager">
 
     <Grid Background="{StaticResource BrushFondoGeneral}" RequestedTheme="Light">
-        <!-- RootFrame se refiere a login -->
         <Frame x:ConnectionId='2' x:Name="RootFrame" />
 
-        <!-- Asistente BookManager (IA local con Ollama): flotante, superpuesto a RootFrame.
-             Permanece oculto en LoginPage; MainWindow.xaml.cs controla su visibilidad. -->
         <views:ChatFlotante x:ConnectionId='3' x:Name="ChatAsistente" Visibility="Collapsed" />
     </Grid>
 </Window>

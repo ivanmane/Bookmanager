@@ -11,7 +11,6 @@
     SizeChanged="ChatFlotante_SizeChanged">
 
     <UserControl.Resources>
-        <!-- Botón del chat: fondo azul marino, hover azul secundario, presionado turquesa -->
         <Style x:Key="BotonChatStyle" TargetType="Button">
             <Setter Property="Background" Value="{StaticResource BrushAzulMarino}" />
             <Setter Property="Foreground" Value="White" />
@@ -55,15 +54,12 @@
         </Style>
     </UserControl.Resources>
 
-    <!-- IMPORTANTE: este Grid raíz NO tiene Background para que los clics
-         pasen a la página que está debajo cuando el panel está cerrado. -->
     <Grid x:Name="RaizChat" Margin="24">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <!-- ===================== PANEL FLOTANTE ===================== -->
         <Border x:Name="PanelChat"
                 Grid.Row="0"
                 Visibility="Collapsed"
@@ -84,7 +80,6 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <!-- Encabezado -->
                 <Border Grid.Row="0"
                         Background="{StaticResource BrushAzulMarino}"
                         CornerRadius="11,11,0,0"
@@ -134,7 +129,6 @@
                     </Grid>
                 </Border>
 
-                <!-- Área de conversación -->
                 <ScrollViewer x:Name="ScrollMensajes"
                               Grid.Row="1"
                               Background="{StaticResource BrushFondoGeneral}"
@@ -144,7 +138,6 @@
                     <StackPanel x:Name="PanelMensajes" Padding="12" Spacing="8" />
                 </ScrollViewer>
 
-                <!-- Indicador de espera -->
                 <Border x:Name="IndicadorEspera"
                         Grid.Row="2"
                         Visibility="Collapsed"
@@ -159,7 +152,6 @@
                     </StackPanel>
                 </Border>
 
-                <!-- Entrada de texto -->
                 <Border Grid.Row="3"
                         BorderBrush="{StaticResource BrushBorde}"
                         BorderThickness="0,1,0,0"
@@ -199,7 +191,6 @@
             </Grid>
         </Border>
 
-        <!-- ===================== BOTÓN CIRCULAR FLOTANTE ===================== -->
         <Button x:Name="BtnFlotante"
                 Grid.Row="1"
                 Style="{StaticResource BotonChatStyle}"

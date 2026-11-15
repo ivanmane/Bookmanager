@@ -17,7 +17,6 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <!-- 1. Encabezado del Dashboard -->
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -34,7 +33,6 @@
                                Foreground="{StaticResource BrushTextoSecundario}" />
                 </StackPanel>
 
-                <!-- Accesos rápidos superiores -->
                 <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
                     <Button Content="Catálogo →"
                             Style="{StaticResource BotonSecundarioStyle}"
@@ -51,7 +49,6 @@
                 </StackPanel>
             </Grid>
 
-            <!-- 2. Mensaje de estado / carga / error -->
             <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="10">
                 <ProgressRing x:Name="PrgCarga"
                               IsActive="True"
@@ -64,7 +61,6 @@
                            Foreground="{StaticResource BrushTextoSecundario}" />
             </StackPanel>
 
-            <!-- 3. Los 4 Indicadores de Inventario (Tarjetas compactas) -->
             <Grid Grid.Row="2" ColumnSpacing="16">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -73,7 +69,6 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- 1. Total de ejemplares -->
                 <Button Grid.Column="0"
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
@@ -103,7 +98,6 @@
                     </Border>
                 </Button>
 
-                <!-- 2. Ejemplares disponibles -->
                 <Button Grid.Column="1"
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
@@ -133,7 +127,6 @@
                     </Border>
                 </Button>
 
-                <!-- 3. Ejemplares prestados -->
                 <Button Grid.Column="2"
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
@@ -163,7 +156,6 @@
                     </Border>
                 </Button>
 
-                <!-- 4. Ejemplares vencidos -->
                 <Button Grid.Column="3"
                         HorizontalAlignment="Stretch"
                         HorizontalContentAlignment="Stretch"
@@ -194,7 +186,6 @@
                 </Button>
             </Grid>
 
-            <!-- 4. Sección: Préstamos pendientes de devolución -->
             <Border Grid.Row="3"
                     Background="{StaticResource BrushSuperficie}"
                     BorderBrush="{StaticResource BrushBorde}"
@@ -212,7 +203,6 @@
                                    Foreground="{StaticResource BrushTextoSecundario}" />
                     </StackPanel>
 
-                    <!-- Mensaje cuando no hay préstamos activos -->
                     <TextBlock x:Name="TxtSinPrestamos"
                                Text="No hay préstamos pendientes de devolución en este momento."
                                FontSize="14"
@@ -221,9 +211,7 @@
                                Margin="0,8,0,0"
                                Visibility="Collapsed" />
 
-                    <!-- Contenedor de la tabla -->
                     <StackPanel x:Name="ContenedorTablaPrestamos" Spacing="0">
-                        <!-- Encabezado de la tabla -->
                         <Border Background="#F8FAFC"
                                 BorderBrush="{StaticResource BrushBorde}"
                                 BorderThickness="1,1,1,0"
@@ -251,7 +239,6 @@
                             </Grid>
                         </Border>
 
-                        <!-- Filas de préstamos activos -->
                         <ListView x:Name="ListaPrestamosPendientes"
                                   SelectionMode="None"
                                   BorderBrush="{StaticResource BrushBorde}"

@@ -14,11 +14,6 @@ using BookManager.Services.AI;
 
 namespace BookManager.Views
 {
-    /// <summary>
-    /// Chat flotante del Asistente BookManager conectado en tiempo real a los archivos JSON
-    /// de la biblioteca (libros, lectores y préstamos) a través de JsonService y Ollama.
-    /// Se coloca una sola vez en MainWindow, encima de RootFrame.
-    /// </summary>
     public sealed partial class ChatFlotante : UserControl
     {
         private enum TipoBurbuja
@@ -32,14 +27,10 @@ namespace BookManager.Views
         private readonly OllamaService _servicio;
         private readonly JsonService _jsonService = new();
 
-        // Historial en memoria (sin el mensaje de sistema). Nunca se guarda en disco.
         private readonly List<OllamaMessage> _historial = new();
 
         private CancellationTokenSource? _cts;
         private bool _generando;
-
-        // Se incrementa al limpiar la sesión: descarta respuestas que lleguen "tarde"
-        // de una sesión anterior (por ejemplo, si se cierra sesión mientras se genera).
         private int _sesion;
 
         public ChatFlotante()
@@ -51,14 +42,6 @@ namespace BookManager.Views
             AgregarMensajeBienvenida();
         }
 
-        // ==========================================================
-        // API PÚBLICA (usada por MainWindow)
-        // ==========================================================
-
-        /// <summary>
-        /// Cierra el panel, cancela cualquier solicitud en curso y borra la conversación.
-        /// Se invoca al volver al LoginPage (cierre de sesión).
-        /// </summary>
         public void LimpiarSesion()
         {
             _sesion++;
@@ -78,13 +61,8 @@ namespace BookManager.Views
             AgregarMensajeBienvenida();
         }
 
-        // ==========================================================
-        // APARIENCIA
-        // ==========================================================
-
         private void ConfigurarSombras()
         {
-            // Sombra ligera. Si la plataforma no la soporta, el control funciona igual sin ella.
             try
             {
                 var sombraBoton = new ThemeShadow();
@@ -99,14 +77,12 @@ namespace BookManager.Views
             }
             catch
             {
-                // Sin sombra: no afecta la funcionalidad.
             }
         }
 
-        // Ajusta el panel si la ventana es pequeña (480 px de alto y 370 de ancho como máximo)
         private void ChatFlotante_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            double altoDisponible = e.NewSize.Height - 48 - 56 - 12; // márgenes + botón + separación
+            double altoDisponible = e.NewSize.Height - 48 - 56 - 12;
             double anchoDisponible = e.NewSize.Width - 48;
 
             PanelChat.Height = Math.Clamp(altoDisponible, 320, 480);
@@ -114,10 +90,6 @@ namespace BookManager.Views
         }
 
         private static Brush Pincel(string clave) => (Brush)Application.Current.Resources[clave];
-
-        // ==========================================================
-        // ABRIR / CERRAR PANEL
-        // ==========================================================
 
         private void BtnFlotante_Click(object sender, RoutedEventArgs e)
         {
@@ -142,19 +114,13 @@ namespace BookManager.Views
             TxtMensaje.Focus(FocusState.Programmatic);
             ScrollAlFinal();
 
-            // Comprobación liviana en segundo plano; no bloquea la apertura del panel.
             _ = ActualizarEstadoIAAsync();
         }
 
         private void CerrarPanel()
         {
-            // Solo se oculta: la conversación se conserva mientras siga la misma sesión.
             PanelChat.Visibility = Visibility.Collapsed;
         }
-
-        // ==========================================================
-        // ESTADO DE OLLAMA (indicador del encabezado)
-        // ==========================================================
 
         private async Task ActualizarEstadoIAAsync()
         {
@@ -189,21 +155,15 @@ namespace BookManager.Views
                     break;
 
                 default:
-                    // Cancelado, tiempo agotado o error de respuesta: el indicador no cambia.
                     break;
             }
         }
-
-        // ==========================================================
-        // ENVÍO DE MENSAJES
-        // ==========================================================
 
         private async void BtnEnviar_Click(object sender, RoutedEventArgs e)
         {
             await EnviarMensajeAsync();
         }
 
-        // Enter envía el mensaje
         private void TxtMensaje_KeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Enter)
@@ -213,7 +173,6 @@ namespace BookManager.Views
             }
         }
 
-        // Misma regla que el resto de BookManager: no se puede empezar con espacios
         private void TxtMensaje_PreviewKeyDown(object sender, KeyRoutedEventArgs e)
         {
             if (e.Key == VirtualKey.Space && sender is TextBox tb && tb.SelectionStart == 0)
@@ -224,7 +183,6 @@ namespace BookManager.Views
 
         private async Task EnviarMensajeAsync()
         {
-            // Evita envíos simultáneos
             if (_generando)
             {
                 return;
@@ -250,7 +208,6 @@ namespace BookManager.Views
 
             try
             {
-                // Lectura asíncrona y fresca de los JSON en disco para alimentar a la IA en tiempo real
                 List<Libro> libros = new();
                 List<Lector> lectores = new();
                 List<Prestamo> prestamos = new();
@@ -263,15 +220,12 @@ namespace BookManager.Views
                 }
                 catch
                 {
-                    // Si ocurre algún fallo de lectura se continúa con las listas vacías
                 }
 
                 string contextoBiblioteca = PromptBiblioteca.ConstruirContextoBiblioteca(libros, lectores, prestamos);
 
-                // La llamada es asíncrona: la interfaz no se congela mientras Ollama genera.
                 OllamaResultado resultado = await _servicio.EnviarAsync(ConstruirMensajes(texto, contextoBiblioteca), cts.Token);
 
-                // Si se cerró sesión mientras se generaba, la respuesta se descarta.
                 if (sesion != _sesion)
                 {
                     return;
@@ -320,7 +274,6 @@ namespace BookManager.Views
             }
         }
 
-        // Mensaje de sistema (con datos actualizados en tiempo real) + historial limitado + pregunta actual
         private List<OllamaMessage> ConstruirMensajes(string preguntaActual, string contextoBiblioteca)
         {
             var mensajes = new List<OllamaMessage>
@@ -333,7 +286,6 @@ namespace BookManager.Views
             return mensajes;
         }
 
-        // Conserva solo los últimos N intercambios (usuario + asistente)
         private void RecortarHistorial()
         {
             int maximo = _opciones.MaxIntercambiosHistorial * 2;
@@ -342,10 +294,6 @@ namespace BookManager.Views
                 _historial.RemoveRange(0, _historial.Count - maximo);
             }
         }
-
-        // ==========================================================
-        // MENSAJES EN PANTALLA
-        // ==========================================================
 
         private void AgregarMensajeBienvenida()
         {
@@ -373,7 +321,6 @@ namespace BookManager.Views
                 Child = bloque,
                 Padding = new Thickness(12, 8, 12, 8),
                 MaxWidth = 290,
-                // Usuario a la derecha, asistente a la izquierda
                 HorizontalAlignment = esUsuario ? HorizontalAlignment.Right : HorizontalAlignment.Left,
                 CornerRadius = esUsuario ? new CornerRadius(12, 12, 2, 12) : new CornerRadius(12, 12, 12, 2),
                 Background = esUsuario

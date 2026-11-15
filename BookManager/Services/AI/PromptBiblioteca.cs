@@ -6,10 +6,6 @@ using BookManager.Models;
 
 namespace BookManager.Services.AI
 {
-    /// <summary>
-    /// Instrucciones de sistema y generador de contexto en tiempo real del Asistente BookManager.
-    /// Conectado directamente a la persistencia JSON de libros, lectores y préstamos.
-    /// </summary>
     public static class PromptBiblioteca
     {
         public const string NombreAsistente = "Asistente BookManager";
@@ -37,9 +33,6 @@ namespace BookManager.Services.AI
             "10. La disponibilidad de un libro necesito que la revises directamente en el apartado de catalogo en la parte de disponibles, no la calcules ni la tomes de prestamos",
         });
 
-        /// <summary>
-        /// Genera una instantánea textual estructurada y compacta de los datos reales de la biblioteca.
-        /// </summary>
         public static string ConstruirContextoBiblioteca(
             IReadOnlyList<Libro>? libros,
             IReadOnlyList<Lector>? lectores,
@@ -55,7 +48,6 @@ namespace BookManager.Services.AI
             var lectoresPorId = lectores.ToDictionary(l => l.Id, l => l);
             var librosPorId = libros.ToDictionary(l => l.Id, l => l);
 
-            // Préstamos activos por libro
             var prestamosActivosPorLibro = prestamos
                 .Where(p => p.FechaDevolucion == null)
                 .GroupBy(p => p.LibroId)
@@ -71,7 +63,6 @@ namespace BookManager.Services.AI
             sb.AppendLine($"Inventario general: {libros.Count} títulos registrados | {totalEjemplares} ejemplares físicos en total ({totalDisponibles} disponibles, {totalPrestamosActivos} prestados [{totalPrestamosVencidos} vencidos]) | {lectores.Count} lectores registrados.");
             sb.AppendLine();
 
-            // 1. Catálogo de Libros
             sb.AppendLine("--- CATÁLOGO DE LIBROS ---");
             if (libros.Count == 0)
             {
@@ -92,7 +83,6 @@ namespace BookManager.Services.AI
             }
             sb.AppendLine();
 
-            // 2. Lectores
             sb.AppendLine("--- LECTORES REGISTRADOS ---");
             if (lectores.Count == 0)
             {
@@ -107,7 +97,6 @@ namespace BookManager.Services.AI
             }
             sb.AppendLine();
 
-            // 3. Préstamos
             sb.AppendLine("--- PRÉSTAMOS REGISTRADOS ---");
             if (prestamos.Count == 0)
             {
@@ -146,9 +135,6 @@ namespace BookManager.Services.AI
             return sb.ToString();
         }
 
-        /// <summary>
-        /// Ensambla el prompt de sistema combinando las instrucciones base con el contexto de datos actual.
-        /// </summary>
         public static string ObtenerPromptSistema(string? contextoBiblioteca)
         {
             if (string.IsNullOrWhiteSpace(contextoBiblioteca))
